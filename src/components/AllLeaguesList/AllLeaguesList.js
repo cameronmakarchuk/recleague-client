@@ -1,3 +1,4 @@
+import LeaguesCard from '../LeaguesCard/LeaguesCard';
 import './AllLeaguesList.scss';
 
 export default function AllLeaguesList() {
@@ -6,8 +7,7 @@ export default function AllLeaguesList() {
 
         <section className='all-leagues-list'>
 
-            {/* Insert LeaguesCard */}
-            <h2>All Leagues List</h2>
+            <LeaguesCard />
         </section>
     )
 }

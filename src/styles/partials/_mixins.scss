@@ -13,6 +13,12 @@
     font-weight: 700;
 }
 
+@mixin pageSubheader {
+    font-family: 'Montserrat Bold';
+    font-size: 16px;
+    font-weight: 700;
+}
+
 @mixin bodyCopy {
     font-family: 'Montserrat Extra Light';
     font-weight: 200;

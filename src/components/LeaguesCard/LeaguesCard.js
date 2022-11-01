@@ -1,4 +1,5 @@
-import '.LeaguesCard.scss';
+import './LeaguesCard.scss';
+import leaguePlaceholder from '../../assets/images/league-placeholder.jpg';
 
 
 export default function LeaguesCard() {
@@ -6,9 +7,9 @@ export default function LeaguesCard() {
     return (
         <section className='leagues-card'>
 
+            <img src={leaguePlaceholder} className='leagues-card__image' alt='league picture' />
             <div className='leagues-card__content'>
 
-                <img src='' className='leagues-card__image' alt='league picture' />
 
                 <div className='leagues-card__info'>
                     <h3 className='leagues-card__name'>League Name</h3>
@@ -23,7 +24,6 @@ export default function LeaguesCard() {
 
             </div>
 
-            <p className='leagues-card__more-details'>Get More Details</p>
 
         </section>
     )
