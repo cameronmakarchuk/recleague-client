@@ -4,10 +4,14 @@
 
 .page-footer {
     width: 100vw;
+    background-color: lightgrey;
+    padding: 3.0rem 1.0rem;
+    margin-top: 2.0rem;
 
     &__text {
         @include bodyCopy;
         font-size: 8px;
         text-align: center;
+        margin: 0;
     }
 }
