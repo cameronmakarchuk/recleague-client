@@ -1,3 +1,14 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
+
+.all-leagues {
+    width: 100vw;
+    padding: 1.0rem;
+
+    &__title {
+        @include pageHeader;
+        margin: 0;
+        padding-bottom: 1.0rem;
+    }
+}
