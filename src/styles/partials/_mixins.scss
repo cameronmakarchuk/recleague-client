@@ -1,0 +1,20 @@
+@use './typography' as *;
+
+@mixin logo {
+    font-family: 'Montserrat Black Italic';
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 900;
+}
+
+@mixin pageHeader {
+    font-family: 'Montseratt Bold';
+    font-size: 20px;
+    font-weight: 700;
+}
+
+@mixin bodyCopy {
+    font-family: 'Montserrat Extra Light';
+    font-weight: 200;
+    font-size: 12px;
+}

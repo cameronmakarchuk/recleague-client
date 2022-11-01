@@ -1,0 +1,19 @@
+@use './styles/partials/mixins' as *;
+@use './styles/partials/typography' as *;
+@use './styles/partials/variables' as *;
+
+html {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0;
+    font-family: 'Montserrat Extra Light';
+}

@@ -1,9 +1,18 @@
 import './App.scss';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import PageHeader from './components/PageHeader/PageHeader';
 
 function App() {
-  return (
-    <h2>Welcome to RecLeague</h2>
-  );
+	return (
+		<BrowserRouter>
+			<PageHeader />
+			<Routes>
+				{/* <Route path='/' element='' /> */}
+
+			</Routes>
+
+		</BrowserRouter>
+	);
 }
 
 export default App;

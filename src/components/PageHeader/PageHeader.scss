@@ -1,0 +1,52 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.page-header {
+    width: 100vw;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    padding: 1.0rem;
+
+    &__logo {
+        @include logo;
+        margin: 0;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: black;
+    }
+
+}
+
+.page-header-nav {
+    margin: 0;
+    display: flex;
+    align-items: center;
+
+
+    &__list {
+        list-style: none;
+        display: flex;
+        margin: 0;
+        padding: 0;
+    }
+
+    &__list-item {
+        margin: 0;
+        @include bodyCopy;
+    }
+
+    &__link {
+        text-decoration: none;
+        color: black;
+    }
+
+    &__login-button {
+        @include bodyCopy;
+        border: none;
+        margin-left: 0.25rem;
+    }
+}
