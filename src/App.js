@@ -1,6 +1,7 @@
 import './App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import PageHeader from './components/PageHeader/PageHeader';
+import PageFooter from './components/PageFooter/PageFooter';
 
 function App() {
 	return (
@@ -10,6 +11,7 @@ function App() {
 				{/* <Route path='/' element='' /> */}
 
 			</Routes>
+			<PageFooter />
 
 		</BrowserRouter>
 	);
