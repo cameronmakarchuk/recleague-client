@@ -6,6 +6,7 @@ import HomePage from './pages/HomePage/HomePage';
 import AllLeaguesPage from './pages/AllLeaguesPage/AllLeaguesPage';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import LeagueDetails from './components/LeagueDetails/LeagueDetails';
+import AddUserForm from './components/AddUserForm/AddUserForm';
 
 function App() {
 	return (
@@ -20,6 +21,8 @@ function App() {
 
 				{/* Delete this route after set up */}
 				<Route path='/league-details' element={<LeagueDetails />} />
+				<Route path='/add-user' element={<AddUserForm />} />
+
 
 			</Routes>
 			<PageFooter />
