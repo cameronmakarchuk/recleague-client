@@ -2,11 +2,12 @@ import './SearchResultsPage.scss';
 import SearchResultsList from '../../components/SearchResultsList/SearchResultsList';
 import { getSearchResults } from '../../utils/api';
 import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 
 
 export default function SearchResultsPage() {
-    const location = sessionStorage.getItem('location')
-    const sport = sessionStorage.getItem('sport')
+
+    const { location, sport } = useParams()
     const [searchResults, setSearchResults] = useState([]);
     const [error, setError] = useState('');
 
@@ -15,6 +16,7 @@ export default function SearchResultsPage() {
             .then(({ data }) => {
                 setSearchResults(data);
             })
+            .catch(err => setError(err));
     }, [])
 
     if (error !== '') {

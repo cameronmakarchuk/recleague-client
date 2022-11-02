@@ -6,7 +6,7 @@ export const getAllLeagues = () => {
     return axios.get(`${API_URL}/leagues`);
 };
 
-export const getSearchResults = (location) => {
-    return axios.get(`${API_URL}/leagues/city/${location}`);
+export const getSearchResults = (location, sport) => {
+    return axios.get(`${API_URL}/leagues/?location=${location}&sport=${sport}`);
 };
 

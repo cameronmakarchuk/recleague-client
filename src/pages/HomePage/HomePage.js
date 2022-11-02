@@ -1,11 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import SearchResultsList from '../../components/SearchResultsList/SearchResultsList';
+import { getSearchResults } from '../../utils/api';
 import './HomePage.scss';
 
 export default function HomePage() {
     const navigate = useNavigate();
     const [location, setLocation] = useState('');
     const [sport, setSport] = useState('');
+    const [searchResults, setSearchResults] = useState(null);
+    const [error, setError] = useState('');
 
     const handleLocationChange = (e) => {
         setLocation(e.target.value);
@@ -16,18 +20,32 @@ export default function HomePage() {
     }
 
     const onSubmitClick = (e) => {
-        // e.preventDefault();
+        e.preventDefault();
         sessionStorage.setItem('location', location);
         sessionStorage.setItem('sport', sport);
 
-        navigate(`/search-results/?location=${location}&sport=${sport}`);
+        getSearchResults(location, sport)
+            .then(({ data }) => {
+                console.log(data)
+                setSearchResults(data);
+            })
+            .catch(err => setError(err));
+
+        // if (error !== '') {
+        //     return <p>Sorry, we couldn't load the data. Error: {error}</p>
+        // }
+
+        // if (!searchResults) {
+        //     return <p>Loading...</p>;
+        // }
+
     }
 
     return (
         <section className='hero'>
             <h1 className='hero__title'>Find Your New Teammates Today</h1>
 
-            <form className='hero-form' onSubmit={onSubmitClick} >
+            <form className='hero-form'>
 
                 <div className='hero-form__inputs'>
                     <label htmlFor='location' className='hero-form__label'></label>
@@ -37,8 +55,11 @@ export default function HomePage() {
                     <input onChange={handleSportChange} type='text' id='sport' name='sport' className='hero-form__input' placeholder='Which sport would you like to play...' />
                 </div>
 
-                <button type='submit' className='hero-form__submit'>Find A League</button>
+                <button onClick={onSubmitClick} className='hero-form__submit'>Find A League</button>
             </form>
+
+            {!!searchResults &&
+                <SearchResultsList searchResults={searchResults} />}
 
 
         </section>

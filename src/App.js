@@ -17,8 +17,12 @@ function App() {
 			<PageHeader />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
+
+				{/* <Route path='/?location=:location&sport=:sport' element={<HomePage />} /> */}
+
+
+
 				<Route path='/all-leagues' element={<AllLeaguesPage />} />
-				<Route path='/search-results' element={<SearchResultsPage />} />
 				<Route path='/login' element={<LoginForm />} />
 				<Route path='/profile' element={<ProfilePage />} />
 
