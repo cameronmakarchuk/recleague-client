@@ -32,9 +32,8 @@
     }
 
     &__price {
-        position: absolute;
-        right: 16px;
-        top: 70px;
+        margin: 0;
+        font-family: 'Montserrat Bold';
     }
 
     &__join-button {

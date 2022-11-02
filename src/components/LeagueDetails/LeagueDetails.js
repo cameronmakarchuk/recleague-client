@@ -32,7 +32,7 @@ export default function LeagueDetails() {
 
             <img src={mapPlaceholder} className='league-details__map-image' alt='map' />
 
-            <p className='league-details__text league-details__price'>{leagueData.price}</p>
+            <p className='league-details__text league-details__price'>Cost: {leagueData.price}</p>
 
             <div className='league-details__dates'>
                 <p className='league-details__text'>{leagueData.start_date}</p>
