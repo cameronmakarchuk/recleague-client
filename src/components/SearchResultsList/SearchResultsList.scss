@@ -1,3 +1,13 @@
 @use '../../styles/partials/mixins' as *;
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
+
+.search-results {
+    width: 100%;
+
+    &__title {
+        @include pageHeader;
+        margin: 0;
+        padding-bottom: 1.0rem;
+    }
+}

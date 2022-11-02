@@ -4,7 +4,6 @@ import PageHeader from './components/PageHeader/PageHeader';
 import PageFooter from './components/PageFooter/PageFooter';
 import HomePage from './pages/HomePage/HomePage';
 import AllLeaguesPage from './pages/AllLeaguesPage/AllLeaguesPage';
-import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import LeagueDetails from './components/LeagueDetails/LeagueDetails';
 import AddUserForm from './components/AddUserForm/AddUserForm';
 import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
@@ -18,18 +17,15 @@ function App() {
 			<Routes>
 				<Route path='/' element={<HomePage />} />
 
-				{/* <Route path='/?location=:location&sport=:sport' element={<HomePage />} /> */}
-
-
 
 				<Route path='/all-leagues' element={<AllLeaguesPage />} />
+				<Route path='/leagues/:leagueId' element={<LeagueDetails />} />
 				<Route path='/login' element={<LoginForm />} />
 				<Route path='/profile' element={<ProfilePage />} />
 
 
 
 				{/* Delete this route after set up */}
-				<Route path='/league-details' element={<LeagueDetails />} />
 				<Route path='/add-user' element={<AddUserForm />} />
 				<Route path='/add-league' element={<AddLeagueForm />} />
 

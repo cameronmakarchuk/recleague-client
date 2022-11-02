@@ -10,3 +10,7 @@ export const getSearchResults = (location, sport) => {
     return axios.get(`${API_URL}/leagues/?location=${location}&sport=${sport}`);
 };
 
+export const getLeagueById = (leagueId) => {
+    return axios.get(`${API_URL}/leagues/${leagueId}`);
+}
+

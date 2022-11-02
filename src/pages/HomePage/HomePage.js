@@ -26,7 +26,6 @@ export default function HomePage() {
 
         getSearchResults(location, sport)
             .then(({ data }) => {
-                console.log(data)
                 setSearchResults(data);
             })
             .catch(err => setError(err));
@@ -39,13 +38,15 @@ export default function HomePage() {
         //     return <p>Loading...</p>;
         // }
 
+        e.target.reset()
+
     }
 
     return (
         <section className='hero'>
             <h1 className='hero__title'>Find Your New Teammates Today</h1>
 
-            <form className='hero-form'>
+            <form className='hero-form' onSubmit={onSubmitClick}>
 
                 <div className='hero-form__inputs'>
                     <label htmlFor='location' className='hero-form__label'></label>
@@ -55,11 +56,11 @@ export default function HomePage() {
                     <input onChange={handleSportChange} type='text' id='sport' name='sport' className='hero-form__input' placeholder='Which sport would you like to play...' />
                 </div>
 
-                <button onClick={onSubmitClick} className='hero-form__submit'>Find A League</button>
+                <button className='hero-form__submit'>Find A League</button>
             </form>
 
             {!!searchResults &&
-                <SearchResultsList searchResults={searchResults} />}
+                <SearchResultsList searchResults={searchResults} location={location} sport={sport} />}
 
 
         </section>

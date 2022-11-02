@@ -1,13 +1,12 @@
 import LeaguesCard from '../LeaguesCard/LeaguesCard';
 import './SearchResultsList.scss';
 
-export default function SearchResultsList({ searchResults, sport }) {
+export default function SearchResultsList({ searchResults, location, sport }) {
 
-    // SET UP FILTER BY SPORT ON SEARCHRESULTS
 
     return (
 
-        <section className='search-results-list'>
+        <section className='search-results'>
             <h2 className='search-results__title'>Search Results</h2>
 
 
