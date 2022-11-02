@@ -9,6 +9,7 @@ import LeagueDetails from './components/LeagueDetails/LeagueDetails';
 import AddUserForm from './components/AddUserForm/AddUserForm';
 import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
 import LoginForm from './components/LoginForm/LoginForm';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 function App() {
 	return (
@@ -19,6 +20,7 @@ function App() {
 				<Route path='/all-leagues' element={<AllLeaguesPage />} />
 				<Route path='/search-results' element={<SearchResultsPage />} />
 				<Route path='/login' element={<LoginForm />} />
+				<Route path='/profile' element={<ProfilePage />} />
 
 
 

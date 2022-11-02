@@ -1,0 +1,24 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.profile {
+    width: 100vw;
+    padding: 1.0rem;
+
+    &__title {
+        @include pageHeader;
+        margin: 0;
+        padding-bottom: 1.0rem;
+    }
+
+    &__avatar {
+        width: 25%;
+        border-radius: 50%;
+    }
+
+    &__text {
+        @include bodyCopy;
+    }
+
+}
