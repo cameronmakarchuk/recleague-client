@@ -6,14 +6,19 @@ import { getAllLeagues } from '../../utils/api';
 
 export default function AllLeaguesList() {
     const [leagues, setLeagues] = useState(undefined);
+    const [error, setError] = useState('')
 
     useEffect(() => {
         getAllLeagues()
             .then(({ data }) => {
                 setLeagues(data);
             })
-            .catch(err => `Could not retrieve leagues: ${err}`);
+            .catch(err => setError(err));
     }, []);
+
+    if (error !== '') {
+        return <p>Sorry, we couldn't load the data. Error: {error}</p>
+    }
 
     if (!leagues) {
         return <p>Loading...</p>;
