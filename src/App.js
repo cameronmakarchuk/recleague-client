@@ -7,6 +7,7 @@ import AllLeaguesPage from './pages/AllLeaguesPage/AllLeaguesPage';
 import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import LeagueDetails from './components/LeagueDetails/LeagueDetails';
 import AddUserForm from './components/AddUserForm/AddUserForm';
+import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
 
 function App() {
 	return (
@@ -22,6 +23,7 @@ function App() {
 				{/* Delete this route after set up */}
 				<Route path='/league-details' element={<LeagueDetails />} />
 				<Route path='/add-user' element={<AddUserForm />} />
+				<Route path='/add-league' element={<AddLeagueForm />} />
 
 
 			</Routes>
