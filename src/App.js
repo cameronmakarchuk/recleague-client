@@ -8,6 +8,7 @@ import SearchResultsPage from './pages/SearchResultsPage/SearchResultsPage';
 import LeagueDetails from './components/LeagueDetails/LeagueDetails';
 import AddUserForm from './components/AddUserForm/AddUserForm';
 import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
+import LoginForm from './components/LoginForm/LoginForm';
 
 function App() {
 	return (
@@ -17,6 +18,7 @@ function App() {
 				<Route path='/' element={<HomePage />} />
 				<Route path='/all-leagues' element={<AllLeaguesPage />} />
 				<Route path='/search-results' element={<SearchResultsPage />} />
+				<Route path='/login' element={<LoginForm />} />
 
 
 

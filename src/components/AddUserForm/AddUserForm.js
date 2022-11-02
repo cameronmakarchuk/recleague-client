@@ -21,7 +21,7 @@ export default function AddUserForm() {
                 <input className='add-user-form__input' id='email' name='email' placeholder='Enter your email...' />
 
                 <label htmlFor='password' className='add-user-form__label'>Password</label>
-                <input className='add-user-form__input' id='password' name='password' placeholder='Enter a password...' />
+                <input type='password' className='add-user-form__input' id='password' name='password' placeholder='Enter a password...' />
 
                 <label htmlFor='address' className='add-user-form__label'>Street Address</label>
                 <input className='add-user-form__input' id='address' name='address' placeholder='Enter your address...' />
