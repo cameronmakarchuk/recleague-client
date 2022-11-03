@@ -1,9 +1,32 @@
 import './ProfilePage.scss';
 import avatarPlaceholder from '../../assets/images/Mohan-muruge.jpg'
+import LoginForm from '../../components/LoginForm/LoginForm';
+import AddUserForm from '../../components/AddUserForm/AddUserForm';
+import { useState } from 'react';
+import { loginUser } from '../../utils/api';
 
 
 export default function ProfilePage() {
+    const [isSignedUp, setIsSignedUp] = useState(false);
+    const [isAuthenticating, setIsAuthenticating] = useState(true);
+    const [isLoggedIn, setIsLoggedIn] = useState(false);
+    const [isLoginError, setIsLoginError] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [profileData, setProfileData] = useState(null);
 
+    const handleLogin = (e) => {
+        e.preventDefault();
+        const email = e.target.login_email.value;
+        const password = e.target.login_password.value;
+        loginUser({ email, password })
+            .then(resp => {
+                console.log(resp);
+            })
+            .catch(err => alert(`Error loggin in: ${err}`));
+    }
+
+
+    if (!isLoggedIn) return <LoginForm handleLogin={handleLogin} />
 
     return (
         <section className='profile'>

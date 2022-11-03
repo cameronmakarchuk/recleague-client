@@ -1,13 +1,13 @@
 import './LoginForm.scss';
 
-export default function LoginForm() {
+export default function LoginForm({ handleLogin }) {
 
 
     return (
         <section className='login'>
             <h2 className='login__title'>Login</h2>
 
-            <form className='login-form'>
+            <form className='login-form' onSubmit={handleLogin}>
                 <label htmlFor='login_email' className='login-form__label'>Email Address</label>
                 <input className='login-form__input' id='login_email' name='login_email' placeholder='Enter your email address...' />
 
