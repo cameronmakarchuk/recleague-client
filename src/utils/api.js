@@ -14,3 +14,7 @@ export const getLeagueById = (leagueId) => {
     return axios.get(`${API_URL}/leagues/${leagueId}`);
 }
 
+export const createNewUser = (newUser) => {
+    return axios.post(`${API_URL}/users`, newUser);
+}
+

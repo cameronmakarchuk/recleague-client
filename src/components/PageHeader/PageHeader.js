@@ -12,7 +12,7 @@ export default function PageHeader() {
                     <NavLink to='/all-leagues' className='page-header-nav__link'><li className='page-header-nav__list-item'>All Leagues</li></NavLink>
                 </ul>
 
-                <button className='page-header-nav__login-button'>Login/Register</button>
+                <NavLink to='/add-user' className='page-header-nav__link'><p className='page-header-nav__login-button'>Login/Register</p></NavLink>
             </nav>
 
         </header>

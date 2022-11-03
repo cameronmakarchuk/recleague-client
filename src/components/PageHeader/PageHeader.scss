@@ -47,6 +47,7 @@
     &__login-button {
         @include bodyCopy;
         border: none;
+        margin: 0;
         margin-left: 0.25rem;
     }
 }
