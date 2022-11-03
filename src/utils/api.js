@@ -18,3 +18,6 @@ export const createNewUser = (newUser) => {
     return axios.post(`${API_URL}/users`, newUser);
 }
 
+export const createNewLeague = (newLeague) => {
+    return axios.post(`${API_URL}/leagues`, newLeague)
+}
