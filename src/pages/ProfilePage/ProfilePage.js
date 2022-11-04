@@ -3,7 +3,8 @@ import avatarPlaceholder from '../../assets/images/Mohan-muruge.jpg'
 import LoginForm from '../../components/LoginForm/LoginForm';
 import AddUserForm from '../../components/AddUserForm/AddUserForm';
 import { useState } from 'react';
-import { loginUser } from '../../utils/api';
+import { getProfileData, loginUser } from '../../utils/api';
+import { useEffect } from 'react';
 
 
 export default function ProfilePage() {
@@ -13,6 +14,17 @@ export default function ProfilePage() {
     const [isLoginError, setIsLoginError] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [profileData, setProfileData] = useState(null);
+
+    useEffect(() => {
+        const authorization = { headers: { Authorization: sessionStorage.bearerToken } };
+        getProfileData(authorization)
+            .then(({ data }) => {
+                setIsLoggedIn(true);
+                setIsAuthenticating(false);
+                setProfileData(data)
+            })
+            .catch(err => console.log(err))
+    }, [])
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -27,6 +39,7 @@ export default function ProfilePage() {
                     const bearerToken = resp.data.token;
                     sessionStorage.bearerToken = bearerToken;
                     setIsLoggedIn(true);
+                    setIsAuthenticating(false);
                     setIsLoginError(false);
                     setErrorMessage('');
                     setProfileData(resp.data.user);
@@ -36,8 +49,8 @@ export default function ProfilePage() {
         e.target.reset();
     }
 
-
-    if (!isLoggedIn) return <LoginForm handleLogin={handleLogin} />
+    if (!isLoggedIn) return <LoginForm handleLogin={handleLogin} />;
+    if (isAuthenticating) return <p>Loading...</p>;
 
     return (
 

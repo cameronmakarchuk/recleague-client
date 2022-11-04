@@ -13,3 +13,5 @@ export const createNewUser = (newUser) => axios.post(`${API_URL}/users`, newUser
 export const createNewLeague = (newLeague) => axios.post(`${API_URL}/leagues`, newLeague);
 
 export const loginUser = (loginDetails) => axios.post(`${API_URL}/auth/login`, loginDetails);
+
+export const getProfileData = (authorization) => axios.get(`${API_URL}/auth/profile`, authorization);
