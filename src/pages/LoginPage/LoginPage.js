@@ -43,6 +43,7 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, isSignedUp, setIs
 
                     <button type='submit' className='login-form__submit'>Login</button>
                 </form>
+
             ) : (
                 <>
                     <p>You're currently logged in.</p>
@@ -50,6 +51,7 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, isSignedUp, setIs
                 </>
             )}
 
+            <Link to='/add-user' className='login__new-user'>New here? Click here to sign up...</Link>
 
         </section>
     )
