@@ -7,32 +7,18 @@ import './AddUserForm.scss';
 export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
     const navigate = useNavigate();
 
-    const [firstName, setFirstName] = useState('Test');
-    const [lastName, setLastName] = useState('Tester');
-    const [email, setEmail] = useState('gmail@gmail.com');
-    const [password, setPassword] = useState('1234');
-    const [address, setAddress] = useState('Some address');
-    const [city, setCity] = useState('Toronto');
-    const [province, setProvince] = useState('Ontario');
-    const [country, setCountry] = useState('Canada');
-    const [postal, setPostal] = useState('Rin 8B7');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [address, setAddress] = useState('');
+    const [city, setCity] = useState('');
+    const [province, setProvince] = useState('');
+    const [country, setCountry] = useState('');
+    const [postal, setPostal] = useState('');
     const [profileImg, setProfileImg] = useState('');
     const [leagueOwner, setLeagueOwner] = useState(false);
     const [errObj, setErrObj] = useState({});
-
-
-    // const [firstName, setFirstName] = useState('');
-    // const [lastName, setLastName] = useState('');
-    // const [email, setEmail] = useState('');
-    // const [password, setPassword] = useState('');
-    // const [address, setAddress] = useState('');
-    // const [city, setCity] = useState('');
-    // const [province, setProvince] = useState('');
-    // const [country, setCountry] = useState('');
-    // const [postal, setPostal] = useState('');
-    // const [profileImg, setProfileImg] = useState('');
-    // const [leagueOwner, setLeagueOwner] = useState(false);
-    // const [errObj, setErrObj] = useState({});
 
     const handleFirstNameChange = (e) => setFirstName(e.target.value);
     const handleLastNameChange = (e) => setLastName(e.target.value);

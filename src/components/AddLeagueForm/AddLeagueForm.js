@@ -18,7 +18,6 @@ export default function AddUserForm() {
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
     const [postal, setPostal] = useState('');
-    const [leagueImg, setLeagueImg] = useState('');
     const [errObj, setErrObj] = useState({});
 
     const handleNameChange = (e) => setName(e.target.value);
@@ -33,7 +32,6 @@ export default function AddUserForm() {
     const handleProvinceChange = (e) => setProvince(e.target.value);
     const handleCountryChange = (e) => setCountry(e.target.value);
     const handlePostalChange = (e) => setPostal(e.target.value);
-    const handleLeagueImgChange = (e) => setLeagueImg(e.target.value);
 
     const isNameInvalid = () => !name;
     const isSportInvalid = () => !sport;
@@ -47,7 +45,6 @@ export default function AddUserForm() {
     const isProvinceInvalid = () => !province;
     const isCountryInvalid = () => !country;
     const isPostalInvalid = () => !postal;
-    // const isLeagueImgInvalid = () => !leagueImg;
 
     const handleSubmitClick = (e) => {
         e.preventDefault();
@@ -64,7 +61,6 @@ export default function AddUserForm() {
             province: isProvinceInvalid(),
             country: isCountryInvalid(),
             postal: isPostalInvalid(),
-            // leagueImg: isLeagueImgInvalid()
         }
 
         const errVals = Object.values(errObj);
@@ -142,9 +138,6 @@ export default function AddUserForm() {
 
                 <label htmlFor='postal_code' className='add-user-form__label'>Postal Code</label>
                 <input onChange={handlePostalChange} className='add-user-form__input' id='postal_code' name='postal_code' placeholder='Enter your postal code...' />
-
-                <label htmlFor='avatar' className='add-user-form__label'>Profile Picture</label>
-                <input type='file' className='add-user-form__input' id='avatar' name='avatar' />
 
                 <button type='submit' className='add-user-form__submit'>Submit</button>
 

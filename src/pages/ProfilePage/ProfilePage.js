@@ -1,5 +1,4 @@
 import './ProfilePage.scss';
-import avatarPlaceholder from '../../assets/images/Mohan-muruge.jpg'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getLeaguesByUserId, API_URL } from '../../utils/api';
@@ -64,7 +63,8 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                             </ul>
                             : <span>no leagues managed</span>}
 
-                        <button onClick={handleLogout} className='profile__logout-button'>Logout</button>
+                        <button onClick={handleLogout} className='profile__button profile__button--logout'>Logout</button>
+                        <button onClick={() => window.location.href = '/add-league'} className='profile__button profile__button--add-league'>Post Your League</button>
                     </>
                 )
             ) : (
