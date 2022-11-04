@@ -1,5 +1,5 @@
 import '../AddUserForm/AddUserForm.scss';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState } from 'react';
 import { createNewLeague } from '../../utils/api';
 
@@ -68,6 +68,7 @@ export default function AddUserForm({ profileData, isLoggedIn }) {
 
         if (!isFormInvalid) {
             const newLeague = {
+                league_owner: profileData.id,
                 name,
                 sport,
                 gender,
@@ -83,9 +84,9 @@ export default function AddUserForm({ profileData, isLoggedIn }) {
             }
 
             createNewLeague(newLeague)
-                .then((resp) => {
+                .then(({ data }) => {
                     alert(`${newLeague.name} has been created!`);
-                    navigate(resp)
+                    navigate(data)
                 })
                 .catch(err => alert(`Error adding new league: ${err}`))
         } else {
@@ -95,53 +96,65 @@ export default function AddUserForm({ profileData, isLoggedIn }) {
 
 
     return (
-
         <section className='add-user'>
-            <h2 className='add-user__title'>Post Your League</h2>
+            {isLoggedIn ? (
+                profileData && (
+                    <>
+                        <h2 className='add-user__title'>Post Your League</h2>
 
-            <form className='add-user-form' onSubmit={handleSubmitClick}>
+                        <form className='add-user-form' onSubmit={handleSubmitClick}>
 
-                <label htmlFor='league_name' className='add-user-form__label'>League Name</label>
-                <input onChange={handleNameChange} className='add-user-form__input' id='league_name' name='league_name' placeholder='Enter your league name...' />
+                            <label htmlFor='league_name' className='add-user-form__label'>League Name</label>
+                            <input onChange={handleNameChange} className='add-user-form__input' id='league_name' name='league_name' placeholder='Enter your league name...' />
 
-                <label htmlFor='league_sport' className='add-user-form__label'>League Sport</label>
-                <input onChange={handleSportChange} className='add-user-form__input' id='league_sport' name='league_sport' placeholder='Enter your league sport...' />
+                            <label htmlFor='league_sport' className='add-user-form__label'>League Sport</label>
+                            <input onChange={handleSportChange} className='add-user-form__input' id='league_sport' name='league_sport' placeholder='Enter your league sport...' />
 
-                <label htmlFor='league_gender' className='add-user-form__label'>League Gender</label>
-                <input onChange={handleGenderChange} className='add-user-form__input' id='league_gender' name='league_gender' placeholder='Enter your league gender...' />
+                            <label htmlFor='league_gender' className='add-user-form__label'>League Gender</label>
+                            <input onChange={handleGenderChange} className='add-user-form__input' id='league_gender' name='league_gender' placeholder='Enter your league gender...' />
 
-                <label htmlFor='league_start-date' className='add-user-form__label'>Start Date</label>
-                <input onChange={handleStartDateChange} className='add-user-form__input' id='league_start-date' name='league_start-date' placeholder='Enter your start date...' />
-
-
-                <label htmlFor='league_end-date' className='add-user-form__label'>End Date</label>
-                <input onChange={handleEndDateChange} className='add-user-form__input' id='league_end-date' name='league_end-date' placeholder='Enter your end date...' />
+                            <label htmlFor='league_start-date' className='add-user-form__label'>Start Date</label>
+                            <input onChange={handleStartDateChange} className='add-user-form__input' id='league_start-date' name='league_start-date' placeholder='Enter your start date...' />
 
 
-                <label htmlFor='league_description' className='add-user-form__label'>Description</label>
-                <input onChange={handleDescriptionChange} className='add-user-form__input' id='league_description' name='league_description' placeholder='Enter a description...' />
+                            <label htmlFor='league_end-date' className='add-user-form__label'>End Date</label>
+                            <input onChange={handleEndDateChange} className='add-user-form__input' id='league_end-date' name='league_end-date' placeholder='Enter your end date...' />
 
-                <label htmlFor='league_price' className='add-user-form__label'>Cost</label>
-                <input onChange={handlePriceChange} className='add-user-form__input' id='league_price' name='league_price' placeholder='Enter your league cost...' />
 
-                <label htmlFor='address' className='add-user-form__label'>Street Address</label>
-                <input onChange={handleAddressChange} className='add-user-form__input' id='address' name='address' placeholder='Enter your address...' />
+                            <label htmlFor='league_description' className='add-user-form__label'>Description</label>
+                            <input onChange={handleDescriptionChange} className='add-user-form__input' id='league_description' name='league_description' placeholder='Enter a description...' />
 
-                <label htmlFor='city' className='add-user-form__label'>City</label>
-                <input onChange={handleCityChange} className='add-user-form__input' id='city' name='city' placeholder='Enter your city...' />
+                            <label htmlFor='league_price' className='add-user-form__label'>Cost</label>
+                            <input onChange={handlePriceChange} className='add-user-form__input' id='league_price' name='league_price' placeholder='Enter your league cost...' />
 
-                <label htmlFor='province' className='add-user-form__label'>Province</label>
-                <input onChange={handleProvinceChange} className='add-user-form__input' id='province' name='province' placeholder='Enter your province...' />
+                            <label htmlFor='address' className='add-user-form__label'>Street Address</label>
+                            <input onChange={handleAddressChange} className='add-user-form__input' id='address' name='address' placeholder='Enter your address...' />
 
-                <label htmlFor='country' className='add-user-form__label'>Country</label>
-                <input onChange={handleCountryChange} className='add-user-form__input' id='country' name='country' placeholder='Enter your country...' />
+                            <label htmlFor='city' className='add-user-form__label'>City</label>
+                            <input onChange={handleCityChange} className='add-user-form__input' id='city' name='city' placeholder='Enter your city...' />
 
-                <label htmlFor='postal_code' className='add-user-form__label'>Postal Code</label>
-                <input onChange={handlePostalChange} className='add-user-form__input' id='postal_code' name='postal_code' placeholder='Enter your postal code...' />
+                            <label htmlFor='province' className='add-user-form__label'>Province</label>
+                            <input onChange={handleProvinceChange} className='add-user-form__input' id='province' name='province' placeholder='Enter your province...' />
 
-                <button type='submit' className='add-user-form__submit'>Submit</button>
+                            <label htmlFor='country' className='add-user-form__label'>Country</label>
+                            <input onChange={handleCountryChange} className='add-user-form__input' id='country' name='country' placeholder='Enter your country...' />
 
-            </form>
+                            <label htmlFor='postal_code' className='add-user-form__label'>Postal Code</label>
+                            <input onChange={handlePostalChange} className='add-user-form__input' id='postal_code' name='postal_code' placeholder='Enter your postal code...' />
+
+                            <button type='submit' className='add-user-form__submit'>Submit</button>
+
+                        </form>
+                    </>
+                )
+            ) : (
+                <>
+                    <p>Login to view this page:</p>
+                    <Link to='/login'>Click here to login</Link>
+                </>
+            )
+            }
+
         </section>
     )
 }
