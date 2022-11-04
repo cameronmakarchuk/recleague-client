@@ -19,6 +19,11 @@
 
     &__text {
         @include bodyCopy;
+
+        &--emphasis {
+            font-family: 'Montserrat Bold';
+            padding-right: 0.5rem;
+        }
     }
 
 }
