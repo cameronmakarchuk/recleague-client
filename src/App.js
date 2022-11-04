@@ -64,10 +64,10 @@ function App() {
 					setIsSignedUp={setIsSignedUp}
 				/>} />
 
-
-
-				{/* Delete this route after set up */}
-				<Route path='/add-league' element={<AddLeagueForm />} />
+				<Route path='/add-league' element={<AddLeagueForm
+					isLoggedIn={isLoggedIn}
+					profileData={profileData}
+				/>} />
 
 
 			</Routes>

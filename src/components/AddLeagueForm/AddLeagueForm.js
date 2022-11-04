@@ -4,7 +4,7 @@ import { useState } from 'react';
 import { createNewLeague } from '../../utils/api';
 
 
-export default function AddUserForm() {
+export default function AddUserForm({ profileData, isLoggedIn }) {
     const navigate = useNavigate();
     const [name, setName] = useState('');
     const [sport, setSport] = useState('');

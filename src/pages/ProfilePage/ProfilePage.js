@@ -53,15 +53,18 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Country: </span>{profileData.country} </p>
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Postal Code: </span>{profileData.postal_code} </p>
 
-                        <p className='profile__text profile__text--emphasis'>Leagues Managed: </p>
                         {leaguesByUser
-                            ? <ul className='profile__league-list'>
-                                {leaguesByUser.map(league => {
-                                    return <li className='profile__text' key={league.id}>{league.name}</li>
-                                }
-                                )}
-                            </ul>
-                            : <span>no leagues managed</span>}
+                            ? <>
+                                <p className='profile__text profile__text--emphasis'>Leagues Managed: </p>
+                                <ul className='profile__league-list'>
+                                    {leaguesByUser.map(league => {
+                                        return <li className='profile__league-list-item' key={league.id}><Link className='profile__text profile__league-link' to={`/leagues/${league.id}`}>{league.name}</Link></li>
+                                    }
+                                    )}
+                                </ul>
+                            </>
+                            : <div></div>
+                        }
 
                         <button onClick={handleLogout} className='profile__button profile__button--logout'>Logout</button>
                         <button onClick={() => window.location.href = '/add-league'} className='profile__button profile__button--add-league'>Post Your League</button>
@@ -73,9 +76,10 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                     <p>Login to view this page:</p>
                     <Link to='/login'>Click here to login</Link>
                 </>
-            )}
+            )
+            }
 
-        </section>
+        </section >
 
     )
 
