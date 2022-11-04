@@ -2,10 +2,35 @@ import './ProfilePage.scss';
 import avatarPlaceholder from '../../assets/images/Mohan-muruge.jpg'
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getProfileData } from '../../utils/api';
+import { getLeaguesByUserId } from '../../utils/api';
 
 
 export default function ProfilePage({ isLoggedIn, profileData, setProfileData, errorMessage }) {
+    const [leaguesByUser, setLeaguesByUser] = useState(null)
+
+
+
+    useEffect(() => {
+        if (!profileData) {
+            return;
+        }
+
+        const { id } = profileData;
+        getLeaguesByUserId(id)
+            .then(resp => {
+                if (resp.status === 200 && resp.data !== undefined) {
+                    setLeaguesByUser(resp.data);
+                } else {
+                    return;
+                }
+            })
+            .catch(err => console.log(err));
+    }, [])
+
+    const handleLogout = () => {
+        sessionStorage.clear();
+        window.location.href = '/login';
+    }
 
     if (!isLoggedIn) {
         return window.location.href = '/login';
@@ -28,6 +53,8 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Country: </span>{profileData.country} </p>
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Postal Code: </span>{profileData.postal_code} </p>
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Leagues Managed: </span></p>
+
+                        <button onClick={handleLogout} className='profile__logout-button'>Logout</button>
                     </>
                 )
             ) : (

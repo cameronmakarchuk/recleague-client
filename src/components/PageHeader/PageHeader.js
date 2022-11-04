@@ -1,7 +1,7 @@
 import './PageHeader.scss';
 import { Link, NavLink } from 'react-router-dom';
 
-export default function PageHeader() {
+export default function PageHeader({ isLoggedIn }) {
 
     return (
         <header className='page-header'>
@@ -12,7 +12,12 @@ export default function PageHeader() {
                     <NavLink to='/all-leagues' className='page-header-nav__link'><li className='page-header-nav__list-item'>All Leagues</li></NavLink>
                 </ul>
 
-                <NavLink to='/add-user' className='page-header-nav__link'><p className='page-header-nav__login-button'>Login/Register</p></NavLink>
+                {!isLoggedIn
+                    ? <NavLink to='/add-user' className='page-header-nav__link'><p className='page-header-nav__login-button'>Login/Register</p></NavLink>
+                    : <NavLink to='/profile' className='page-header-nav__link'><p className='page-header-nav__login-button'>Profile</p></NavLink>
+                }
+
+
             </nav>
 
         </header>

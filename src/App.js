@@ -36,7 +36,7 @@ function App() {
 
 	return (
 		<BrowserRouter>
-			<PageHeader />
+			<PageHeader isLoggedIn={isLoggedIn} />
 			<Routes>
 				<Route path='/' element={<HomePage />} />
 
