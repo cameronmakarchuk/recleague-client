@@ -11,6 +11,18 @@
         margin: 0;
         padding-bottom: 1.0rem;
     }
+
+    &__user-login {
+        display: inline-block;
+        text-decoration: none;
+        width: 100%;
+        border-radius: 20px;
+        background-color: lightgray;
+        color: white;
+        padding: 0.5rem 0;
+        text-align: center;
+
+    }
 }
 
 .add-user-form {

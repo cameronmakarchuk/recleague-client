@@ -28,9 +28,6 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, isSignedUp, setIs
         e.target.reset();
     }
 
-    // if (isLoggedIn) {
-    //     return window.location.href = '/profile';
-    // }
 
     return (
         <section className='login'>

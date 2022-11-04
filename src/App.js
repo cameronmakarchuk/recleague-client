@@ -27,6 +27,7 @@ function App() {
 		const authorization = { headers: { Authorization: sessionStorage.bearerToken } };
 		getProfileData(authorization)
 			.then(({ data }) => {
+				setIsSignedUp(true);
 				setIsLoggedIn(true);
 				setProfileData(data)
 			})
@@ -58,11 +59,14 @@ function App() {
 					errorMessage={errorMessage}
 				/>}
 				/>
+				<Route path='/add-user' element={<AddUserForm
+					isSignedUp={isSignedUp}
+					setIsSignedUp={setIsSignedUp}
+				/>} />
 
 
 
 				{/* Delete this route after set up */}
-				<Route path='/add-user' element={<AddUserForm />} />
 				<Route path='/add-league' element={<AddLeagueForm />} />
 
 

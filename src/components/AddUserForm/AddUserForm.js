@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { createNewUser } from '../../utils/api';
 import './AddUserForm.scss';
 
 
-export default function AddUserForm() {
+export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
     const navigate = useNavigate();
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
@@ -78,7 +78,8 @@ export default function AddUserForm() {
             createNewUser(newUser)
                 .then(() => {
                     alert(`${newUser.first_name}'s profile was created!`);
-                    navigate('/');
+                    setIsSignedUp(true);
+                    navigate('/login');
                 })
                 .catch(err => alert(`Error adding new user profile: ${err}`));
         } else {
@@ -91,6 +92,7 @@ export default function AddUserForm() {
 
         <section className='add-user'>
             <h2 className='add-user__title'>Create Your Profile</h2>
+            <Link to='/login' className='add-user__user-login'>Already signed up? Login here...</Link>
 
             <form className='add-user-form' onSubmit={handleSubmitClick}>
 
