@@ -6,18 +6,33 @@ import './AddUserForm.scss';
 
 export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
     const navigate = useNavigate();
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [address, setAddress] = useState('');
-    const [city, setCity] = useState('');
-    const [province, setProvince] = useState('');
-    const [country, setCountry] = useState('');
-    const [postal, setPostal] = useState('');
+
+    const [firstName, setFirstName] = useState('Test');
+    const [lastName, setLastName] = useState('Tester');
+    const [email, setEmail] = useState('gmail@gmail.com');
+    const [password, setPassword] = useState('1234');
+    const [address, setAddress] = useState('Some address');
+    const [city, setCity] = useState('Toronto');
+    const [province, setProvince] = useState('Ontario');
+    const [country, setCountry] = useState('Canada');
+    const [postal, setPostal] = useState('Rin 8B7');
     const [profileImg, setProfileImg] = useState('');
     const [leagueOwner, setLeagueOwner] = useState(false);
     const [errObj, setErrObj] = useState({});
+
+
+    // const [firstName, setFirstName] = useState('');
+    // const [lastName, setLastName] = useState('');
+    // const [email, setEmail] = useState('');
+    // const [password, setPassword] = useState('');
+    // const [address, setAddress] = useState('');
+    // const [city, setCity] = useState('');
+    // const [province, setProvince] = useState('');
+    // const [country, setCountry] = useState('');
+    // const [postal, setPostal] = useState('');
+    // const [profileImg, setProfileImg] = useState('');
+    // const [leagueOwner, setLeagueOwner] = useState(false);
+    // const [errObj, setErrObj] = useState({});
 
     const handleFirstNameChange = (e) => setFirstName(e.target.value);
     const handleLastNameChange = (e) => setLastName(e.target.value);
@@ -28,7 +43,7 @@ export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
     const handleProvinceChange = (e) => setProvince(e.target.value);
     const handleCountryChange = (e) => setCountry(e.target.value);
     const handlePostalChange = (e) => setPostal(e.target.value);
-    const handleProfileImgChange = (e) => setProfileImg(e.target.value);
+    const handleProfileImgChange = (e) => setProfileImg(e.target.files[0]);
     const handleLeagueOwnerChange = (e) => setLeagueOwner(e.target.value);
 
     const isFirstNameInvalid = () => !firstName;
@@ -61,23 +76,23 @@ export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
         const isFormInvalid = errVals.find(err => err === true);
 
         if (!isFormInvalid) {
-            const newUser = {
-                first_name: firstName,
-                last_name: lastName,
-                email: email,
-                address: address,
-                city: city,
-                province: province,
-                country: country,
-                postal_code: postal,
-                avatar_img: profileImg,
-                password: password,
-                is_league_owner: leagueOwner
-            }
+            const formData = new FormData();
 
-            createNewUser(newUser)
+            formData.append('first_name', firstName)
+            formData.append('last_name', lastName)
+            formData.append('email', email)
+            formData.append('address', address)
+            formData.append('city', city)
+            formData.append('province', province)
+            formData.append('country', country)
+            formData.append('postal_code', postal)
+            formData.append('password', password)
+            formData.append('avatar_img', profileImg)
+            formData.append('is_league_owner', leagueOwner)
+
+            createNewUser(formData)
                 .then(() => {
-                    alert(`${newUser.first_name}'s profile was created!`);
+                    alert(`${firstName}'s profile was created!`);
                     setIsSignedUp(true);
                     navigate('/login');
                 })
