@@ -20,4 +20,4 @@ export const getLeaguesByUserId = (userId) => axios.get(`${API_URL}/leagues/user
 
 export const postJoinLeague = (details) => axios.post(`${API_URL}/league-details`, details);
 
-export const getLeaguesJoinedByUser = () => axios.get(`${API_URL}/league-details`);
+export const getLeaguesJoinedByUser = (userId) => axios.get(`${API_URL}/league-details/leagues/${userId}`);

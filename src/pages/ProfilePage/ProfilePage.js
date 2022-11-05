@@ -15,15 +15,18 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
             return;
         }
 
-        const { id } = profileData;
-        getLeaguesByUserId(id)
+        const { id_user } = profileData;
+        getLeaguesByUserId(id_user)
             .then(resp => {
                 if (resp.status === 200 && resp.data !== undefined) {
                     setLeaguesByUser(resp.data);
                 } else {
-                    return;
+                    setLeaguesByUser(null)
                 }
-                // return getLeaguesJoinedByUser();
+                return getLeaguesJoinedByUser(id_user);
+            })
+            .then(({ data }) => {
+                setLeaguesJoined(data);
             })
             .catch(err => console.log(err));
     }, [])
@@ -73,7 +76,7 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                                 <p className='profile__text profile__text--emphasis'>Leagues You Manage: </p>
                                 <ul className='profile__league-list'>
                                     {leaguesByUser.map(league => {
-                                        return <li className='profile__league-list-item' key={league.id}><Link className='profile__text profile__league-link' to={`/leagues/${league.id}`}>{league.name}</Link></li>
+                                        return <li className='profile__league-list-item' key={league.id_league}><Link className='profile__text profile__league-link' to={`/leagues/${league.id_league}`}>{league.name}</Link></li>
                                     }
                                     )}
                                 </ul>
