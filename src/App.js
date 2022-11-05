@@ -42,7 +42,10 @@ function App() {
 
 
 				<Route path='/all-leagues' element={<AllLeaguesPage />} />
-				<Route path='/leagues/:leagueId' element={<LeagueDetails />} />
+				<Route path='/leagues/:leagueId' element={<LeagueDetails
+					isLoggedIn={isLoggedIn}
+					profileData={profileData}
+				/>} />
 				<Route path='/login' element={<LoginPage
 					isLoggedIn={isLoggedIn}
 					setIsLoggedIn={setIsLoggedIn}

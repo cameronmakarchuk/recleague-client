@@ -17,3 +17,5 @@ export const loginUser = (loginDetails) => axios.post(`${API_URL}/auth/login`, l
 export const getProfileData = (authorization) => axios.get(`${API_URL}/auth/profile`, authorization);
 
 export const getLeaguesByUserId = (userId) => axios.get(`${API_URL}/leagues/user/${userId}`);
+
+export const postJoinLeague = (details) => axios.post(`${API_URL}/league-details`, details);

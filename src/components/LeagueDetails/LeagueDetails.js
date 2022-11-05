@@ -5,7 +5,7 @@ import { getLeagueById } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 
 
-export default function LeagueDetails() {
+export default function LeagueDetails(isLoggedIn, profileData) {
     const { leagueId } = useParams();
     const [leagueData, setLeagueData] = useState(null);
 
@@ -15,6 +15,7 @@ export default function LeagueDetails() {
             .then(({ data }) => {
                 setLeagueData(data[0]);
             })
+            .catch(err => console.log(err));
     }, [leagueId])
 
     //  if (error !== '') {
@@ -54,7 +55,11 @@ export default function LeagueDetails() {
             <p className='league-details__text'>{leagueData.description}</p>
 
 
-            <button className='league-details__join-button'>Join</button>
+            {
+                isLoggedIn
+                    ? <button className='league-details__join-button'>Join</button>
+                    : <button>Login</button>
+            }
 
 
 
