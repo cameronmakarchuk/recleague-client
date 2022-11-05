@@ -10,16 +10,18 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
     const { leagueId } = useParams();
     const [leagueData, setLeagueData] = useState(null);
     const [showJoinLeague, setShowJoinLeague] = useState(false);
+    const [leagueMember, setLeagueMember] = useState(false);
+
 
 
     useEffect(() => {
         getLeagueById(leagueId)
             .then(({ data }) => {
                 setLeagueData(data[0]);
+                setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)))
             })
             .catch(err => console.log(err));
-    }, [leagueId])
-
+    }, [leagueId, leaguesJoined])
 
     if (!leagueData) {
         return <p>Loading...</p>;
@@ -53,7 +55,13 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
             <p className='league-details__text'>{leagueData.description}</p>
 
 
-            {isLoggedIn ? <button onClick={() => setShowJoinLeague(true)} className='league-details__join-button'>Join</button> : <button onClick={() => window.location.href = '/login'}>Login</button>}
+            {isLoggedIn
+                ? (leagueMember
+                    ? <button>Member</button>
+                    : <button onClick={() => setShowJoinLeague(true)} className='league-details__join-button'>Join League</button>
+                )
+                : <button onClick={() => window.location.href = '/login'}>Login</button>
+            }
 
 
             <JoinLeagueModal

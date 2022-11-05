@@ -22,7 +22,6 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, l
                 } else {
                     setLeaguesByUser(null)
                 }
-
             })
             .catch(err => console.log(err));
     }, [])

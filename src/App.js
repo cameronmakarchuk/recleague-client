@@ -38,7 +38,7 @@ function App() {
 				setLeaguesJoined(data);
 			})
 			.catch(err => setErrorMessage(err.message))
-	}, [])
+	}, [profileData])
 
 	return (
 		<BrowserRouter>

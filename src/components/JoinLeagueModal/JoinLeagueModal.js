@@ -5,14 +5,12 @@ import './JoinLeagueModal.scss';
 export default function JoinLeagueModal({ showJoinLeague, setShowJoinLeague, leagueData, profileData }) {
 
 
-    const handleCloseJoinLeague = () => {
-        setShowJoinLeague(false);
-    }
+    const handleCloseJoinLeague = () => setShowJoinLeague(false);
 
     const handleSubmitJoinLeague = () => {
         const details = {
-            users_id: profileData.id,
-            leagues_id: leagueData.id
+            users_id: profileData.id_user,
+            leagues_id: leagueData.id_league
         }
         postJoinLeague(details)
             .then(() => {
