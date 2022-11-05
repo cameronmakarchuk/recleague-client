@@ -1,7 +1,7 @@
 import './LeagueDetails.scss';
 import mapPlaceholder from '../../assets/images/map-placeholder.png';
 import { useEffect, useState } from 'react';
-import { getLeagueById } from '../../utils/api';
+import { getLeagueById, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
@@ -31,7 +31,11 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         <section className='league-details'>
             <h2 className='league-details__title'>{leagueData.name}</h2>
 
-            <img src={mapPlaceholder} className='league-details__map-image' alt='map' />
+            {/* <img src={mapPlaceholder} className='league-details__map-image' alt='map' /> */}
+
+            <iframe src={`${G_MAPS_EMBED_URL}?key=${G_MAPS_EMBED_API_KEY}&q=235+Bloor+Street+East,Toronto+ON`} >
+
+            </iframe>
 
             <p className='league-details__text league-details__price'>Cost: {leagueData.price}</p>
 

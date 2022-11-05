@@ -1,5 +1,8 @@
 import axios from 'axios';
 
+export const G_MAPS_EMBED_API_KEY = 'AIzaSyC72XFtnzES-erwicBGL1G4g6ipjh1M5TY'
+export const G_MAPS_EMBED_URL = 'https://www.google.com/maps/embed/v1/place'
+
 export const API_URL = 'http://localhost:8080';
 
 export const getAllLeagues = () => axios.get(`${API_URL}/leagues`);
