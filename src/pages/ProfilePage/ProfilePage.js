@@ -1,11 +1,12 @@
 import './ProfilePage.scss';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getLeaguesByUserId, API_URL } from '../../utils/api';
+import { getLeaguesByUserId, API_URL, getLeaguesJoinedByUser } from '../../utils/api';
 
 
 export default function ProfilePage({ isLoggedIn, profileData, setProfileData, errorMessage }) {
     const [leaguesByUser, setLeaguesByUser] = useState(null)
+    const [leaguesJoined, setLeaguesJoined] = useState(null)
 
 
 
@@ -22,6 +23,7 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                 } else {
                     return;
                 }
+                // return getLeaguesJoinedByUser();
             })
             .catch(err => console.log(err));
     }, [])
@@ -53,9 +55,22 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Country: </span>{profileData.country} </p>
                         <p className='profile__text'><span className='profile__text profile__text--emphasis'>Postal Code: </span>{profileData.postal_code} </p>
 
+                        {leaguesJoined
+                            ? <>
+                                <p className='profile__text profile__text--emphasis'>Leagues You're In: </p>
+                                <ul className='profile__league-list'>
+                                    {leaguesJoined.map(league => {
+                                        return <li className='profile__league-list-item' key={league.id}><Link className='profile__text profile__league-link' to={`/leagues/${league.id}`}>{league.name}</Link></li>
+                                    }
+                                    )}
+                                </ul>
+                            </>
+                            : <p>You're not currently in any leagues.</p>
+                        }
+
                         {leaguesByUser
                             ? <>
-                                <p className='profile__text profile__text--emphasis'>Leagues Managed: </p>
+                                <p className='profile__text profile__text--emphasis'>Leagues You Manage: </p>
                                 <ul className='profile__league-list'>
                                     {leaguesByUser.map(league => {
                                         return <li className='profile__league-list-item' key={league.id}><Link className='profile__text profile__league-link' to={`/leagues/${league.id}`}>{league.name}</Link></li>
@@ -63,7 +78,7 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                                     )}
                                 </ul>
                             </>
-                            : <div></div>
+                            : <p>You don't manage any leagues.</p>
                         }
 
                         <button onClick={handleLogout} className='profile__button profile__button--logout'>Logout</button>

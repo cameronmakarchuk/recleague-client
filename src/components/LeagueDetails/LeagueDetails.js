@@ -22,9 +22,6 @@ export default function LeagueDetails({ isLoggedIn, profileData }) {
             .catch(err => console.log(err));
     }, [leagueId])
 
-    const handleShowJoinLeague = () => {
-        setShowJoinLeague(true);
-    }
 
     if (!leagueData) {
         return <p>Loading...</p>;
@@ -58,7 +55,7 @@ export default function LeagueDetails({ isLoggedIn, profileData }) {
             <p className='league-details__text'>{leagueData.description}</p>
 
 
-            {isLoggedIn ? <button onClick={handleShowJoinLeague} className='league-details__join-button'>Join</button> : <button>Login</button>}
+            {isLoggedIn ? <button onClick={() => setShowJoinLeague(true)} className='league-details__join-button'>Join</button> : <button onClick={() => window.location.href = '/login'}>Login</button>}
 
 
             <JoinLeagueModal
