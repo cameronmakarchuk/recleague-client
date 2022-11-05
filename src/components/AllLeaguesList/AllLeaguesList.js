@@ -32,8 +32,8 @@ export default function AllLeaguesList() {
             {leagues.map(league => {
                 return (
                     <LeaguesCard
-                        key={league.id}
-                        leagueId={league.id}
+                        key={league.id_league}
+                        leagueId={league.id_league}
                         leagueName={league.name}
                         leagueSport={league.sport}
                         leagueStart={league.start_date}

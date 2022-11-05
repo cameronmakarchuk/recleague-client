@@ -10,7 +10,7 @@ import AddUserForm from './components/AddUserForm/AddUserForm';
 import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import { getProfileData } from './utils/api';
+import { getProfileData, getLeaguesJoinedByUser } from './utils/api';
 
 function App() {
 	const [isSignedUp, setIsSignedUp] = useState(false);
@@ -18,6 +18,8 @@ function App() {
 	const [isLoginError, setIsLoginError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [profileData, setProfileData] = useState(null);
+	const [leaguesJoined, setLeaguesJoined] = useState(null)
+
 
 	useEffect(() => {
 		if (!sessionStorage.bearerToken) {
@@ -30,6 +32,10 @@ function App() {
 				setIsSignedUp(true);
 				setIsLoggedIn(true);
 				setProfileData(data)
+				return getLeaguesJoinedByUser(profileData.id_user);
+			})
+			.then(({ data }) => {
+				setLeaguesJoined(data);
 			})
 			.catch(err => setErrorMessage(err.message))
 	}, [])
@@ -45,6 +51,7 @@ function App() {
 				<Route path='/leagues/:leagueId' element={<LeagueDetails
 					isLoggedIn={isLoggedIn}
 					profileData={profileData}
+					leaguesJoined={leaguesJoined}
 				/>} />
 				<Route path='/login' element={<LoginPage
 					isLoggedIn={isLoggedIn}
@@ -60,6 +67,7 @@ function App() {
 					profileData={profileData}
 					setProfileData={setProfileData}
 					errorMessage={errorMessage}
+					leaguesJoined={leaguesJoined}
 				/>}
 				/>
 				<Route path='/add-user' element={<AddUserForm

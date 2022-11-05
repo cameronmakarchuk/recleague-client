@@ -13,8 +13,8 @@ export default function SearchResultsList({ searchResults, location, sport }) {
             {searchResults.map(result => {
                 return (
                     <LeaguesCard
-                        key={result.id}
-                        leagueId={result.id}
+                        key={result.id_league}
+                        leagueId={result.id_league}
                         leagueName={result.name}
                         leagueSport={result.sport}
                         leagueStart={result.start_date}

@@ -6,12 +6,10 @@ import { useParams } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
 
-export default function LeagueDetails({ isLoggedIn, profileData }) {
+export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }) {
     const { leagueId } = useParams();
     const [leagueData, setLeagueData] = useState(null);
     const [showJoinLeague, setShowJoinLeague] = useState(false);
-
-
 
 
     useEffect(() => {

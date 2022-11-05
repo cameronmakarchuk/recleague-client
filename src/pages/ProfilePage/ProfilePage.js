@@ -4,9 +4,8 @@ import { Link } from 'react-router-dom';
 import { getLeaguesByUserId, API_URL, getLeaguesJoinedByUser } from '../../utils/api';
 
 
-export default function ProfilePage({ isLoggedIn, profileData, setProfileData, errorMessage }) {
+export default function ProfilePage({ isLoggedIn, profileData, setProfileData, leaguesJoined, errorMessage }) {
     const [leaguesByUser, setLeaguesByUser] = useState(null)
-    const [leaguesJoined, setLeaguesJoined] = useState(null)
 
 
 
@@ -23,10 +22,7 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                 } else {
                     setLeaguesByUser(null)
                 }
-                return getLeaguesJoinedByUser(id_user);
-            })
-            .then(({ data }) => {
-                setLeaguesJoined(data);
+
             })
             .catch(err => console.log(err));
     }, [])
@@ -63,7 +59,7 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, e
                                 <p className='profile__text profile__text--emphasis'>Leagues You're In: </p>
                                 <ul className='profile__league-list'>
                                     {leaguesJoined.map(league => {
-                                        return <li className='profile__league-list-item' key={league.id}><Link className='profile__text profile__league-link' to={`/leagues/${league.id}`}>{league.name}</Link></li>
+                                        return <li className='profile__league-list-item' key={league.id_league}><Link className='profile__text profile__league-link' to={`/leagues/${league.id_league}`}>{league.name}</Link></li>
                                     }
                                     )}
                                 </ul>
