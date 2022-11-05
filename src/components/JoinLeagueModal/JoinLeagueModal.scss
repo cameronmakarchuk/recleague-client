@@ -1,0 +1,26 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.join-league-background {
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.join-league {
+    width: 90%;
+    padding: 1.0rem;
+    background-color: white;
+    position: relative;
+    top: 150px;
+    margin: 0 auto;
+
+    &__title {
+        @include pageHeader;
+    }
+}

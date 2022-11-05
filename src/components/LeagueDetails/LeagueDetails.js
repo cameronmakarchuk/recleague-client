@@ -3,11 +3,15 @@ import mapPlaceholder from '../../assets/images/map-placeholder.png';
 import { useEffect, useState } from 'react';
 import { getLeagueById } from '../../utils/api';
 import { useParams } from 'react-router-dom';
+import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
 
-export default function LeagueDetails(isLoggedIn, profileData) {
+export default function LeagueDetails({ isLoggedIn, profileData }) {
     const { leagueId } = useParams();
     const [leagueData, setLeagueData] = useState(null);
+    const [showJoinLeague, setShowJoinLeague] = useState(false);
+
+
 
 
     useEffect(() => {
@@ -18,14 +22,13 @@ export default function LeagueDetails(isLoggedIn, profileData) {
             .catch(err => console.log(err));
     }, [leagueId])
 
-    //  if (error !== '') {
-    //         return <p>Sorry, we couldn't load the data. Error: {error}</p>
-    //     }
+    const handleShowJoinLeague = () => {
+        setShowJoinLeague(true);
+    }
 
     if (!leagueData) {
         return <p>Loading...</p>;
     }
-
 
     return (
         <section className='league-details'>
@@ -55,14 +58,15 @@ export default function LeagueDetails(isLoggedIn, profileData) {
             <p className='league-details__text'>{leagueData.description}</p>
 
 
-            {
-                isLoggedIn
-                    ? <button className='league-details__join-button'>Join</button>
-                    : <button>Login</button>
-            }
+            {isLoggedIn ? <button onClick={handleShowJoinLeague} className='league-details__join-button'>Join</button> : <button>Login</button>}
 
 
-
+            <JoinLeagueModal
+                showJoinLeague={showJoinLeague}
+                setShowJoinLeague={setShowJoinLeague}
+                leagueData={leagueData}
+                profileData={profileData}
+            />
 
 
         </section>
