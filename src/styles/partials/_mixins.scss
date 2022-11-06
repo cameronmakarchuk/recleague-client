@@ -1,4 +1,5 @@
 @use './typography' as *;
+@use './variables' as *;
 
 @mixin logo {
     font-family: 'Montserrat Black Italic';
@@ -11,16 +12,19 @@
     font-family: 'Montserrat Bold';
     font-size: 20px;
     font-weight: 700;
+    color: $onyx;
 }
 
 @mixin pageSubheader {
     font-family: 'Montserrat Bold';
     font-size: 16px;
     font-weight: 700;
+    color: $onyx;
 }
 
 @mixin bodyCopy {
     font-family: 'Montserrat Extra Light';
     font-weight: 200;
     font-size: 12px;
+    color: $onyx;
 }

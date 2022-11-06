@@ -34,7 +34,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         <section className='league-details'>
             <h2 className='league-details__title'>{leagueData.name}</h2>
 
-            <img src={`${G_MAPS_STATIC_URL}?size=400x400&markers=${convertedAddress},${leagueData.city},${leagueData.province}&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
+            <img src={`${G_MAPS_STATIC_URL}?size=400x400&zoom=15&markers=${convertedAddress},${leagueData.city},${leagueData.province}&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
 
 
 
@@ -47,7 +47,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
             </div>
 
             <div className='league-details__gender-sport'>
-                <p className='league-details__text'>{leagueData.gender}</p>
+                {/* <p className='league-details__text'>{leagueData.gender}</p> */}
                 <p className='league-details__text'>{leagueData.sport}</p>
             </div>
 

@@ -11,7 +11,10 @@
 
     &__title {
         @include pageHeader;
+        font-size: 24px;
         text-align: center;
+        margin: 0;
+        padding: 1.0rem 0 0.5rem;
     }
 }
 
@@ -33,15 +36,29 @@
         width: 100%;
         margin: 0.5rem 0;
         border-radius: 20px;
-        padding: 0.5rem;
+        border: 1px solid $onyx;
+        padding: 0.5rem 1.0rem;
 
         &::placeholder {
-            padding-left: 0.5rem;
+            @include bodyCopy;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $teal;
+            border: none;
         }
     }
 
     &__submit {
-        padding: 0.5rem 1.0rem;
+        padding: 0.5rem 1.25rem;
         border-radius: 20px;
+        border: 1px solid $teal;
+        background-color: $teal;
+        color: $white;
+        margin-top: 0.5rem;
+
+        &:focus-visible {
+            border: none;
+        }
     }
 }
