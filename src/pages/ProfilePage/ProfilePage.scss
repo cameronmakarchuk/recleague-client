@@ -12,13 +12,27 @@
         padding-bottom: 1.0rem;
     }
 
+    &__user {
+        display: flex;
+        justify-content: space-between;
+        padding-bottom: 0.75rem;
+    }
+
     &__avatar {
-        width: 25%;
+        width: 75px;
+        height: 75px;
         border-radius: 50%;
+        border: 0.5px solid $teal;
+    }
+
+    &__user-details {
+        margin-top: 0.25rem;
     }
 
     &__text {
         @include bodyCopy;
+        margin: 0;
+        padding-bottom: 0.25rem;
 
         &--emphasis {
             font-family: 'Montserrat Bold';
@@ -28,7 +42,46 @@
 
     &__league-list {
         margin: 0;
+        padding: 0;
         padding-bottom: 1.0rem;
+        list-style: none;
+    }
+
+    &__league-list-item {
+        background-color: lighten($silver, 10%);
+        padding: 0.25rem;
+        border-radius: 4px;
+        margin-bottom: 0.25rem;
+
+        &:hover {
+            transform: scale(1.02);
+            background-color: $silver;
+        }
+    }
+
+    &__league-link {
+        @include bodyCopy;
+        display: inline-block;
+        width: 100%;
+        text-decoration: none;
+    }
+
+    &__buttons {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+    }
+
+    &__button {
+        @include submitButton;
+        width: 100%;
+        margin-top: 0.5rem;
+
+        &--logout {
+            background-color: $onyx;
+            border-color: $onyx;
+        }
     }
 
 }
