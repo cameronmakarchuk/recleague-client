@@ -1,5 +1,4 @@
 import './LeaguesCard.scss';
-import leaguePlaceholder from '../../assets/images/league-placeholder.jpg';
 import { Link } from 'react-router-dom';
 
 
@@ -9,12 +8,11 @@ export default function LeaguesCard({ leagueId, leagueName, leagueSport, leagueS
     return (
         <Link to={`/leagues/${leagueId}`} className='leagues-card__link'>
             <section className='leagues-card'>
+                <h3 className='leagues-card__name'>{leagueName}</h3>
 
-                <img src={leaguePlaceholder} className='leagues-card__image' alt='league picture' />
                 <div className='leagues-card__content'>
 
                     <div className='leagues-card__info'>
-                        <h3 className='leagues-card__name'>{leagueName}</h3>
                         <p className='leagues-card__sport'>{leagueSport}</p>
                         <p className='leagues-card__start-date'>{leagueStart}</p>
                     </div>

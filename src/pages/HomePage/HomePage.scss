@@ -33,32 +33,11 @@
     }
 
     &__input {
-        width: 100%;
-        margin: 0.5rem 0;
-        border-radius: 20px;
-        border: 1px solid $onyx;
-        padding: 0.5rem 1.0rem;
-
-        &::placeholder {
-            @include bodyCopy;
-        }
-
-        &:focus-visible {
-            outline: 2px solid $teal;
-            border: none;
-        }
+        @include formInput;
     }
 
     &__submit {
-        padding: 0.5rem 1.25rem;
-        border-radius: 20px;
-        border: 1px solid $teal;
-        background-color: $teal;
-        color: $white;
+        @include submitButton;
         margin-top: 0.5rem;
-
-        &:focus-visible {
-            border: none;
-        }
     }
 }
