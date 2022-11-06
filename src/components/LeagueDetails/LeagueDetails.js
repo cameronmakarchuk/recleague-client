@@ -1,7 +1,7 @@
 import './LeagueDetails.scss';
 import mapPlaceholder from '../../assets/images/map-placeholder.png';
 import { useEffect, useState } from 'react';
-import { getLeagueById, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL } from '../../utils/api';
+import { getLeagueById, getLeagueLocationByMap, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL, G_MAPS_STATIC_URL } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
@@ -11,6 +11,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
     const [leagueData, setLeagueData] = useState(null);
     const [showJoinLeague, setShowJoinLeague] = useState(false);
     const [leagueMember, setLeagueMember] = useState(false);
+    const [leagueMap, setLeagueMap] = useState('')
 
 
 
@@ -23,6 +24,11 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
             .catch(err => console.log(err));
     }, [leagueId, leaguesJoined])
 
+    // getLeagueLocationByMap()
+    //     .then(({ data }) => {
+    //         setLeagueMap(data);
+    //     })
+
     if (!leagueData) {
         return <p>Loading...</p>;
     }
@@ -31,11 +37,10 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         <section className='league-details'>
             <h2 className='league-details__title'>{leagueData.name}</h2>
 
-            {/* <img src={mapPlaceholder} className='league-details__map-image' alt='map' /> */}
+            <img src={`${G_MAPS_STATIC_URL}?size=400x400&markers=235+Bloor+Street,Toronto,ON&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
+            {/* <iframe src={`${G_MAPS_EMBED_URL}?key=${G_MAPS_EMBED_API_KEY}&q=235+Bloor+Street+East,Toronto+ON`} ></iframe> */}
 
-            <iframe src={`${G_MAPS_EMBED_URL}?key=${G_MAPS_EMBED_API_KEY}&q=235+Bloor+Street+East,Toronto+ON`} >
 
-            </iframe>
 
             <p className='league-details__text league-details__price'>Cost: {leagueData.price}</p>
 

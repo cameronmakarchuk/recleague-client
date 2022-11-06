@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const G_MAPS_EMBED_API_KEY = 'AIzaSyC72XFtnzES-erwicBGL1G4g6ipjh1M5TY'
 export const G_MAPS_EMBED_URL = 'https://www.google.com/maps/embed/v1/place'
+export const G_MAPS_STATIC_URL = 'https://maps.googleapis.com/maps/api/staticmap'
 
 export const API_URL = 'http://localhost:8080';
 
@@ -24,3 +25,5 @@ export const getLeaguesByUserId = (userId) => axios.get(`${API_URL}/leagues/user
 export const postJoinLeague = (details) => axios.post(`${API_URL}/league-details`, details);
 
 export const getLeaguesJoinedByUser = (userId) => axios.get(`${API_URL}/league-details/leagues/${userId}`);
+
+// export const getLeagueLocationByMap = () => axios.get(`${G_MAPS_STATIC_URL}?size=400x400&markers=235+Bloor+Street,Toronto,ON&key=${G_MAPS_EMBED_API_KEY}`);
