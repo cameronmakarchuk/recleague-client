@@ -4,7 +4,7 @@
 
 .add-user {
     width: 100vw;
-    padding: 1.0rem;
+    padding: 1.5rem 1.0rem;
 
     &__title {
         @include pageHeader;
@@ -13,14 +13,13 @@
     }
 
     &__user-login {
+        @include bodyCopy;
+        @include submitButton;
+        width: 100%;
+        text-align: center;
         display: inline-block;
         text-decoration: none;
-        width: 100%;
-        border-radius: 20px;
-        background-color: lightgray;
-        color: white;
-        padding: 0.5rem 0;
-        text-align: center;
+
 
     }
 }
@@ -32,22 +31,21 @@
 
     &__label {
         @include bodyCopy;
-        padding: 0.5rem 0 0.25rem;
+        font-family: 'Montserrat Bold';
+        padding: 0.5rem 0 0;
     }
 
     &__input {
-        padding: 0.5rem 1.0rem;
-        border-radius: 20px;
+        @include formInput;
+        margin-top: 0.25rem;
 
-        &::placeholder {
-            @include bodyCopy;
-            font-style: italic;
-            padding: 0.5rem;
+        &#avatar {
+            border: none;
         }
     }
 
     &__submit {
-        padding: 0.5rem 1.0rem;
-        border-radius: 20px;
+        @include submitButton;
+        margin-top: 0.5rem;
     }
 }
