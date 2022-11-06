@@ -18,7 +18,11 @@
         text-align: center;
         text-decoration: none;
         margin-top: 0.5rem;
-        color: black;
+        color: $onyx;
+
+        &:hover {
+            color: $silver;
+        }
 
     }
 }
@@ -29,24 +33,16 @@
     flex-direction: column;
 
     &__label {
-        @include bodyCopy;
-        padding: 0.5rem 0 0.25rem;
+        @include formLabel;
     }
 
     &__input {
-        padding: 0.5rem 1.0rem;
-        border-radius: 20px;
-
-        &::placeholder {
-            @include bodyCopy;
-            font-style: italic;
-            padding: 0.5rem;
-        }
+        @include formInput;
+        margin-top: 0.25rem;
     }
 
     &__submit {
-        padding: 0.5rem 1.0rem;
-        border-radius: 20px;
-        margin-top: 1.0rem;
+        @include submitButton;
+        margin-top: 0.5rem;
     }
 }

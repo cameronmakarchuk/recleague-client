@@ -29,7 +29,15 @@
     color: $onyx;
 }
 
+@mixin formLabel {
+    @include bodyCopy;
+    font-family: 'Montserrat Bold';
+    padding: 0.5rem 0 0;
+}
+
 @mixin formInput {
+    @include bodyCopy;
+    color: $onyx;
     width: 100%;
     margin: 0.5rem 0;
     border-radius: 20px;
@@ -38,6 +46,7 @@
 
     &::placeholder {
         @include bodyCopy;
+        font-size: 10px;
     }
 
     &:focus-visible {

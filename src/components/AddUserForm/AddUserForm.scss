@@ -30,9 +30,7 @@
     flex-direction: column;
 
     &__label {
-        @include bodyCopy;
-        font-family: 'Montserrat Bold';
-        padding: 0.5rem 0 0;
+        @include formLabel;
     }
 
     &__input {
