@@ -11,7 +11,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
     const [leagueData, setLeagueData] = useState(null);
     const [showJoinLeague, setShowJoinLeague] = useState(false);
     const [leagueMember, setLeagueMember] = useState(false);
-    const [leagueMap, setLeagueMap] = useState('')
+    const [convertedAddress, setConvertedAddress] = useState('')
 
 
 
@@ -19,15 +19,12 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         getLeagueById(leagueId)
             .then(({ data }) => {
                 setLeagueData(data[0]);
-                setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)))
+                setConvertedAddress(leagueData.address.replaceAll(' ', '+'))
+                setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)));
             })
             .catch(err => console.log(err));
-    }, [leagueId, leaguesJoined])
+    }, [leaguesJoined])
 
-    // getLeagueLocationByMap()
-    //     .then(({ data }) => {
-    //         setLeagueMap(data);
-    //     })
 
     if (!leagueData) {
         return <p>Loading...</p>;
@@ -37,8 +34,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         <section className='league-details'>
             <h2 className='league-details__title'>{leagueData.name}</h2>
 
-            <img src={`${G_MAPS_STATIC_URL}?size=400x400&markers=235+Bloor+Street,Toronto,ON&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
-            {/* <iframe src={`${G_MAPS_EMBED_URL}?key=${G_MAPS_EMBED_API_KEY}&q=235+Bloor+Street+East,Toronto+ON`} ></iframe> */}
+            <img src={`${G_MAPS_STATIC_URL}?size=400x400&markers=${convertedAddress},${leagueData.city},${leagueData.province}&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
 
 
 
