@@ -1,8 +1,29 @@
 @use './typography' as *;
 @use './variables' as *;
 
-// MOBILE: 320px - 767px
+/*
+MOBILE SPACING: 
+- Main Section: 
+    - padding left/right: 1.0rem
+    - padding top/bottom: 1.0rem
+    - between elements: 1.0rem
+    - before headlines/new sections: 1.5rem
 
+TABLET SPACING: 
+- Main Section:
+    - padding left/right: 2.25rem
+    - padding top/bottom: 2.0rem
+    -between elements: 1.5rem
+    - before headlines/new sections: 2.25rem
+
+DESKTOP SPACING:
+- Main Section: 
+    - 
+
+*/
+
+
+// MOBILE: 320px - 767px
 @mixin tablet {
     @media (min-width: $tablet-breakpoint) and (max-width: 1279px) {
         @content;
