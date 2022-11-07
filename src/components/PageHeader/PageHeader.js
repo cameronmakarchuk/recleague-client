@@ -10,12 +10,15 @@ export default function PageHeader({ isLoggedIn }) {
             <nav className='page-header-nav'>
                 <ul className='page-header-nav__list'>
                     <NavLink to='/all-leagues' className='page-header-nav__link'><li className='page-header-nav__list-item'>All Leagues</li></NavLink>
+
+                    {!isLoggedIn
+                        ? <NavLink to='/add-user' className='page-header-nav__link'><li className='page-header-nav__login-button'>Login/Register</li></NavLink>
+                        : <NavLink to='/profile' className='page-header-nav__link'><li className='page-header-nav__login-button'>Profile</li></NavLink>
+                    }
+
                 </ul>
 
-                {!isLoggedIn
-                    ? <NavLink to='/add-user' className='page-header-nav__link'><p className='page-header-nav__login-button'>Login/Register</p></NavLink>
-                    : <NavLink to='/profile' className='page-header-nav__link'><p className='page-header-nav__login-button'>Profile</p></NavLink>
-                }
+
 
 
             </nav>

@@ -10,6 +10,11 @@
     margin-bottom: 1.0rem;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.14), 0px 3px 4px rgba(0, 0, 0, 0.12), 0px 1px 8px rgba(0, 0, 0, 0.2);
 
+    @include tablet {
+        padding: 1.0rem;
+        padding-left: 2.0rem;
+    }
+
     &:hover {
         transform: scale(1.02);
     }
@@ -36,6 +41,10 @@
 
     &__address {
         padding-left: 2.0rem;
+
+        @include tablet {
+            padding-left: 8.0rem;
+        }
     }
 
     &__sport,
