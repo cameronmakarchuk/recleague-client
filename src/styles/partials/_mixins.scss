@@ -1,11 +1,40 @@
 @use './typography' as *;
 @use './variables' as *;
 
+// MOBILE: 320px - 767px
+
+@mixin tablet {
+    @media (min-width: $tablet-breakpoint) and (max-width: 1279px) {
+        @content;
+    }
+}
+
+@mixin desktop {
+    @media (min-width: $desktop-breakpoint) {
+        @content;
+    }
+}
+
 @mixin logo {
     font-family: 'Montserrat Black Italic';
     font-size: 16px;
     font-style: italic;
     font-weight: 900;
+
+    @include tablet {
+        font-size: 20px;
+    }
+}
+
+@mixin pageTitle {
+    font-family: 'Montserrat Bold';
+    font-size: 24px;
+    font-weight: 700;
+    color: $onyx;
+
+    @include tablet {
+        font-size: 28px;
+    }
 }
 
 @mixin pageHeader {
@@ -13,6 +42,10 @@
     font-size: 20px;
     font-weight: 700;
     color: $onyx;
+
+    @include tablet {
+        font-size: 24px;
+    }
 }
 
 @mixin pageSubheader {
@@ -20,6 +53,10 @@
     font-size: 16px;
     font-weight: 700;
     color: $onyx;
+
+    @include tablet {
+        font-size: 20px;
+    }
 }
 
 @mixin bodyCopy {
@@ -27,12 +64,20 @@
     font-weight: 200;
     font-size: 12px;
     color: $onyx;
+
+    @include tablet {
+        font-size: 16px;
+    }
 }
 
 @mixin formLabel {
     @include bodyCopy;
     font-family: 'Montserrat Bold';
     padding: 0.5rem 0 0;
+
+    @include tablet {
+        padding: 0.75rem 0 0.25rem;
+    }
 }
 
 @mixin formInput {
@@ -44,9 +89,17 @@
     border: 1px solid $onyx;
     padding: 0.5rem 1.0rem;
 
+    @include tablet {
+        padding: 0.5rem 1.25rem;
+    }
+
     &::placeholder {
         @include bodyCopy;
         font-size: 10px;
+
+        @include tablet {
+            font-size: 13px;
+        }
     }
 
     &:focus-visible {
@@ -56,6 +109,7 @@
 }
 
 @mixin submitButton {
+    @include bodyCopy;
     padding: 0.5rem 1.25rem;
     border-radius: 20px;
     border: 1px solid $teal;

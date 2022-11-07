@@ -13,6 +13,7 @@
     }
 
     &__user {
+        max-width: 400px;
         display: flex;
         justify-content: space-between;
         padding-bottom: 0.75rem;
@@ -27,6 +28,7 @@
 
     &__user-details {
         margin-top: 0.25rem;
+        padding-left: 0.5rem;
     }
 
     &__text {

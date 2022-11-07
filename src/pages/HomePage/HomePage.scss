@@ -10,8 +10,7 @@
     align-items: center;
 
     &__title {
-        @include pageHeader;
-        font-size: 24px;
+        @include pageTitle;
         text-align: center;
         margin: 0;
         padding: 1.0rem 0 0.5rem;
@@ -27,6 +26,7 @@
 
     &__inputs {
         width: 100%;
+        max-width: 420px;
         display: flex;
         flex-direction: column;
         align-items: center;

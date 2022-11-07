@@ -23,7 +23,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                 setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)));
             })
             .catch(err => console.log(err));
-    }, [leaguesJoined])
+    }, [/*leagueData, */leaguesJoined])
 
 
     if (!leagueData) {

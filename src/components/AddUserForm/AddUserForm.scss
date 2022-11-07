@@ -15,10 +15,17 @@
     &__user-login {
         @include bodyCopy;
         @include submitButton;
+        background-color: $onyx;
+        border-color: $onyx;
         width: 100%;
         text-align: center;
         display: inline-block;
         text-decoration: none;
+
+        &:hover {
+            background-color: darken($onyx, 15%);
+            cursor: pointer;
+        }
 
 
     }
