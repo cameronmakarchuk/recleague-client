@@ -26,4 +26,4 @@ export const postJoinLeague = (details) => axios.post(`${API_URL}/league-details
 
 export const getLeaguesJoinedByUser = (userId) => axios.get(`${API_URL}/league-details/leagues/${userId}`);
 
-// export const getLeagueLocationByMap = () => axios.get(`${G_MAPS_STATIC_URL}?size=400x400&markers=235+Bloor+Street,Toronto,ON&key=${G_MAPS_EMBED_API_KEY}`);
+export const getUsersInLeague = (leagueId) => axios.get(`${API_URL}/league-details/users/${leagueId}`);

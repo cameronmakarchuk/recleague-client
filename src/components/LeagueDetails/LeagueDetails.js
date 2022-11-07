@@ -19,11 +19,11 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         getLeagueById(leagueId)
             .then(({ data }) => {
                 setLeagueData(data[0]);
-                setConvertedAddress(leagueData.address.replaceAll(' ', '+'))
+                setConvertedAddress(data[0].address.replaceAll(' ', '+'))
                 setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)));
             })
             .catch(err => console.log(err));
-    }, [/*leagueData, */leaguesJoined])
+    }, [leaguesJoined])
 
 
     if (!leagueData) {

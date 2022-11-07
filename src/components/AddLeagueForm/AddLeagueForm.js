@@ -68,7 +68,7 @@ export default function AddUserForm({ profileData, isLoggedIn }) {
 
         if (!isFormInvalid) {
             const newLeague = {
-                league_owner: profileData.id,
+                league_owner: profileData.id_user,
                 name,
                 sport,
                 gender,
