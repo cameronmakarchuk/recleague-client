@@ -38,7 +38,7 @@ export default function JoinLeagueModal({ showJoinLeague, setShowJoinLeague, lea
                 </p>
 
                 <p className='join-league__text join-league__text--emphasis'>
-                    League Dates: <span className='join-league__text'>{leagueData.start_date} {leagueData.end_date}</span>
+                    League Dates: <span className='join-league__text'>{leagueData.start_date} - {leagueData.end_date}</span>
                 </p>
 
                 <p className='join-league__text join-league__text--emphasis'>

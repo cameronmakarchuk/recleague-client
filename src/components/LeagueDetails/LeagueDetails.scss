@@ -22,12 +22,14 @@
 
     &__text {
         @include bodyCopy;
+        font-size: 14px;
         margin: 0;
         padding-bottom: 0.25rem;
 
         &--emphasis {
             font-family: 'Montserrat Bold';
             margin-right: 0.25rem;
+            color: $electric-blue;
         }
     }
 
@@ -38,6 +40,7 @@
     &__price {
         margin: 0;
         font-family: 'Montserrat Bold';
+        color: $electric-blue;
     }
 
     &__address {

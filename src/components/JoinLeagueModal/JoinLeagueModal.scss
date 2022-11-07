@@ -17,10 +17,52 @@
     padding: 1.0rem;
     background-color: white;
     position: relative;
-    top: 150px;
+    top: 125px;
     margin: 0 auto;
+    border-radius: 4px;
 
     &__title {
         @include pageHeader;
+    }
+
+    &__text {
+        @include bodyCopy;
+        font-size: 14px;
+
+        &--emphasis {
+            font-family: 'Montserrat Bold';
+            color: $electric-blue;
+        }
+    }
+
+    &__label {
+        @include formLabel;
+        padding: 0 0.5rem;
+
+    }
+
+    &__checkbox {
+        margin: 0;
+    }
+
+    &__buttons {
+        display: flex;
+        justify-content: center;
+    }
+
+    &__button {
+        @include submitButton;
+        margin-top: 1.0rem;
+
+        &--cancel {
+            background-color: $onyx;
+            border-color: $onyx;
+            margin-right: 0.5rem;
+
+            &:hover {
+                background-color: darken($onyx, 15%);
+                cursor: pointer;
+            }
+        }
     }
 }
