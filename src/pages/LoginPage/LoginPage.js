@@ -43,8 +43,8 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, isSignedUp, setIs
                         <input type='password' className='login-form__input' id='login_password' name='login_password' placeholder='Enter your password...' />
 
                         <button type='submit' className='login-form__submit'>Login</button>
+                        <Link to='/add-user' className='login__new-user'>New here? Click here to sign up...</Link>
                     </form>
-                    <Link to='/add-user' className='login__new-user'>New here? Click here to sign up...</Link>
                 </>
             ) : (
                 <>
