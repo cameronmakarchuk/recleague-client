@@ -34,37 +34,41 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
         <section className='league-details'>
             <h2 className='league-details__title'>{leagueData.name}</h2>
 
-            <img src={`${G_MAPS_STATIC_URL}?size=800x350&zoom=15&markers=${convertedAddress},${leagueData.city},${leagueData.province}&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
+            <div className='league-details__map-info-wrapper'>
+                <img src={`${G_MAPS_STATIC_URL}?size=800x350&zoom=15&markers=${convertedAddress},${leagueData.city},${leagueData.province}&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />
+
+                <div className='league-details__league-info'>
+                    <p className='league-details__text league-details__price'>Cost: ${leagueData.price}</p>
+
+                    <div className='league-details__dates'>
+                        <span className='league-details__text league-details__text--emphasis'>Dates:</span><p className='league-details__text'>{leagueData.start_date}</p>
+                        <p className='league-details__text'> - </p>
+                        <p className='league-details__text'>{leagueData.end_date}</p>
+                    </div>
+
+                    <span className='league-details__text league-details__text--emphasis'>Sport:</span><span className='league-details__text'>{leagueData.sport}</span>
+
+                    <div className='league-details__address'>
+                        <p className='league-details__text league-details__address--street'>{leagueData.address}</p>
+                        <span className='league-details__text league-details__address--city'>{leagueData.city},</span><span className='league-details__text league-details__address--province'>{leagueData.province}</span>
+                    </div>
 
 
-            <div className='league-details__league-info'>
-                <p className='league-details__text league-details__price'>Cost: ${leagueData.price}</p>
+                    <p className='league-details__text'>{leagueData.description}</p>
 
-                <div className='league-details__dates'>
-                    <span className='league-details__text league-details__text--emphasis'>Dates:</span><p className='league-details__text'>{leagueData.start_date}</p>
-                    <p className='league-details__text'> - </p>
-                    <p className='league-details__text'>{leagueData.end_date}</p>
+                    {isLoggedIn
+                        ? (leagueMember
+                            ? <button className='league-details__button league-details__button--member'>Member</button>
+                            : <button onClick={() => setShowJoinLeague(true)} className='league-details__button league-details__button--join'>Join League</button>
+                        )
+                        : <button onClick={() => window.location.href = '/login'} className='league-details__button league-details__button--login'>Login To Join</button>
+                    }
+
                 </div>
-
-                <span className='league-details__text league-details__text--emphasis'>Sport:</span><span className='league-details__text'>{leagueData.sport}</span>
-
-                <div className='league-details__address'>
-                    <p className='league-details__text league-details__address--street'>{leagueData.address}</p>
-                    <span className='league-details__text league-details__address--city'>{leagueData.city},</span><span className='league-details__text league-details__address--province'>{leagueData.province}</span>
-                </div>
-
-
-                <p className='league-details__text'>{leagueData.description}</p>
             </div>
 
 
-            {isLoggedIn
-                ? (leagueMember
-                    ? <button className='league-details__button league-details__button--member'>Member</button>
-                    : <button onClick={() => setShowJoinLeague(true)} className='league-details__button league-details__button--join'>Join League</button>
-                )
-                : <button onClick={() => window.location.href = '/login'} className='league-details__button league-details__button--login'>Login</button>
-            }
+
 
 
             <JoinLeagueModal

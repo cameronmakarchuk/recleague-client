@@ -21,6 +21,10 @@
     margin: 0 auto;
     border-radius: 4px;
 
+    @include tablet {
+        padding: 1.5rem;
+    }
+
     &__title {
         @include pageHeader;
     }
@@ -39,6 +43,10 @@
         @include formLabel;
         padding: 0 0.5rem;
 
+        @include tablet {
+            padding: 0 1.0rem;
+        }
+
     }
 
     &__checkbox {
@@ -48,16 +56,29 @@
     &__buttons {
         display: flex;
         justify-content: center;
+        margin-top: 1.0rem;
+
+        @include tablet {
+            margin: 2.0rem 0 0.5rem;
+            justify-content: space-between;
+        }
     }
 
     &__button {
         @include submitButton;
-        margin-top: 1.0rem;
+
+        @include tablet {
+            width: 45%;
+        }
 
         &--cancel {
             background-color: $onyx;
             border-color: $onyx;
             margin-right: 0.5rem;
+
+            @include tablet {
+                margin-right: 0;
+            }
 
             &:hover {
                 background-color: darken($onyx, 15%);
