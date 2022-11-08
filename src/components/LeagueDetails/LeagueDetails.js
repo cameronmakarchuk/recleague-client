@@ -83,7 +83,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                                         {usersInLeague.map(user => {
                                             return <li key={user.id_user} className='league-members__user'>
                                                 {user.first_name} {user.last_name}
-                                                <Link to={user.email} className='league-members__user-email-link'>{user.email}</Link>
+                                                <a href={`mailto:${user.email}`} className='league-members__user-email-link'>{user.email}</a>
                                             </li>
                                         })}
                                     </ul>
