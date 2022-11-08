@@ -1,0 +1,108 @@
+@use '../../styles/partials/mixins' as *;
+@use '../../styles/partials/typography' as *;
+@use '../../styles/partials/variables' as *;
+
+.add-league {
+    width: 100vw;
+    padding: 1.5rem 1.0rem;
+
+    @include tablet {
+        padding: 2.0rem 2.25rem;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+    }
+
+    &__title {
+        @include pageHeader;
+        margin: 0;
+        padding-bottom: 1.0rem;
+
+        @include tablet {
+            padding-bottom: 2.0rem;
+        }
+    }
+
+    &__user-login {
+        @include bodyCopy;
+        @include submitButton;
+        background-color: $onyx;
+        border-color: $onyx;
+        width: 100%;
+        text-align: center;
+        display: inline-block;
+        text-decoration: none;
+        margin-bottom: 1.0rem;
+
+        @include tablet {
+            width: fit-content;
+            position: absolute;
+            right: 2.25rem;
+
+        }
+
+        &:hover {
+            background-color: darken($onyx, 15%);
+            cursor: pointer;
+        }
+
+
+    }
+}
+
+.add-league-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+    &__wrapper {
+        @include tablet {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    &__user-info {
+        @include tablet {
+            width: 45%;
+        }
+    }
+
+    &__user-address {
+        @include tablet {
+            width: 45%;
+        }
+    }
+
+    &__label {
+        @include formLabel;
+    }
+
+    &__input {
+        @include formInput;
+        margin-top: 0.25rem;
+
+        @include tablet {
+            margin: 0.5rem 0;
+        }
+
+        &#add-league_gender {
+            appearance: none;
+        }
+
+        &#add-league_description {
+            resize: none;
+        }
+    }
+
+    &__submit {
+        @include submitButton;
+        margin-top: 0.5rem;
+
+        @include tablet {
+            width: 45%;
+            align-self: flex-end;
+            margin-top: 1.5rem;
+        }
+    }
+}

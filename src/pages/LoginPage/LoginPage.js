@@ -2,7 +2,7 @@ import './LoginPage.scss';
 import { loginUser } from '../../utils/api';
 import { useNavigate, Link } from 'react-router-dom';
 
-export default function LoginPage({ isLoggedIn, setIsLoggedIn, isSignedUp, setIsLoginError, setErrorMessage, setProfileData }) {
+export default function LoginPage({ isLoggedIn, setIsLoggedIn, setIsLoginError, setErrorMessage, setProfileData }) {
 
     const navigate = useNavigate();
     const handleLogin = (e) => {

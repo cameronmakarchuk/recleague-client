@@ -1,7 +1,6 @@
 import './LeagueDetails.scss';
-import mapPlaceholder from '../../assets/images/map-placeholder.png';
 import { useEffect, useState } from 'react';
-import { getLeagueById, getLeagueLocationByMap, getUsersInLeague, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL, G_MAPS_STATIC_URL } from '../../utils/api';
+import { getLeagueById, getUsersInLeague, G_MAPS_EMBED_API_KEY, G_MAPS_STATIC_URL } from '../../utils/api';
 import { useParams, Link } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
@@ -20,11 +19,11 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
     useEffect(() => {
         getLeagueById(leagueId)
             .then(({ data }) => {
-                setLeagueData(data[0]);
-                setConvertedAddress(data[0].address.replaceAll(' ', '+'))
+                setLeagueData(data);
+                setConvertedAddress(data.address.replaceAll(' ', '+'))
                 setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)));
-                setIsLeagueOwner(Number(data[0].league_owner) === Number(profileData.id_user));
-                return getUsersInLeague(data[0].id_league)
+                setIsLeagueOwner(Number(data.league_owner) === Number(profileData.id_user));
+                return getUsersInLeague(data.id_league)
             })
             .then(({ data }) => setUsersInLeague(data))
             .catch(err => console.log(err));
@@ -91,9 +90,6 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                             </>
                         )
                     }
-
-                    {/* usersInLeague */}
-
 
                 </div>
             </div>

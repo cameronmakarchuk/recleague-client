@@ -11,9 +11,9 @@ import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { getProfileData, getLeaguesJoinedByUser } from './utils/api';
+import EditLeague from './components/EditLeague/EditLeague';
 
 function App() {
-	const [isSignedUp, setIsSignedUp] = useState(false);
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoginError, setIsLoginError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
@@ -29,7 +29,7 @@ function App() {
 		const authorization = { headers: { Authorization: sessionStorage.bearerToken } };
 		getProfileData(authorization)
 			.then(({ data }) => {
-				setIsSignedUp(true);
+				// setIsSignedUp(true);
 				setIsLoggedIn(true);
 				setProfileData(data)
 				return getLeaguesJoinedByUser(profileData.id_user);
@@ -56,7 +56,6 @@ function App() {
 				<Route path='/login' element={<LoginPage
 					isLoggedIn={isLoggedIn}
 					setIsLoggedIn={setIsLoggedIn}
-					isSignedUp={isSignedUp}
 					isLoginError={isLoginError}
 					setIsLoginError={setIsLoginError}
 					setErrorMessage={setErrorMessage}
@@ -70,16 +69,17 @@ function App() {
 					leaguesJoined={leaguesJoined}
 				/>}
 				/>
-				<Route path='/add-user' element={<AddUserForm
-					isSignedUp={isSignedUp}
-					setIsSignedUp={setIsSignedUp}
-				/>} />
+				<Route path='/add-user' element={<AddUserForm />} />
 
 				<Route path='/add-league' element={<AddLeagueForm
 					isLoggedIn={isLoggedIn}
 					profileData={profileData}
 				/>} />
 
+				<Route path='/edit-league/:leagueId' element={<EditLeague
+					isLoggedIn={isLoggedIn}
+					profileData={profileData}
+				/>} />
 
 			</Routes>
 			<PageFooter />

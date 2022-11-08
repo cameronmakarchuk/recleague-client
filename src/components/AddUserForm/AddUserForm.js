@@ -4,7 +4,7 @@ import { createNewUser } from '../../utils/api';
 import './AddUserForm.scss';
 
 
-export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
+export default function AddUserForm() {
     const navigate = useNavigate();
 
     const [firstName, setFirstName] = useState('');
@@ -79,7 +79,6 @@ export default function AddUserForm({ isSignedUp, setIsSignedUp }) {
             createNewUser(formData)
                 .then(() => {
                     alert(`${firstName}'s profile was created!`);
-                    setIsSignedUp(true);
                     navigate('/login');
                 })
                 .catch(err => alert(`Error adding new user profile: ${err}`));

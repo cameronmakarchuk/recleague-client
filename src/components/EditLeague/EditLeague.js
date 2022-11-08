@@ -1,11 +1,12 @@
-import './AddLeagueForm.scss';
-import { useNavigate, Link } from 'react-router-dom';
-import { useState } from 'react';
-import { createNewLeague } from '../../utils/api';
+import '../AddLeagueForm/AddLeagueForm.scss';
+import { useNavigate, Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { createNewLeague, getLeagueById } from '../../utils/api';
 
 
-export default function AddLeagueForm({ profileData, isLoggedIn }) {
+export default function EditLeague({ profileData, isLoggedIn }) {
     const navigate = useNavigate();
+    const { leagueId } = useParams();
     const [name, setName] = useState('');
     const [sport, setSport] = useState('');
     const [gender, setGender] = useState('');
@@ -46,6 +47,27 @@ export default function AddLeagueForm({ profileData, isLoggedIn }) {
     const isCountryInvalid = () => !country;
     const isPostalInvalid = () => !postal;
 
+    useEffect(() => {
+        getLeagueById(leagueId)
+            .then(({ data }) => {
+                const newStart = new Date(data.start_date).toISOString().split('T')[0];
+                const newEnd = new Date(data.end_date).toISOString().split('T')[0];
+                setName(data.name);
+                setSport(data.sport);
+                setGender(data.gender);
+                setStartDate(newStart);
+                setEndDate(newEnd);
+                setDescription(data.description);
+                setPrice(data.price);
+                setAddress(data.address);
+                setCity(data.city);
+                setProvince(data.city);
+                setCountry(data.country);
+                setPostal(data.postal_code);
+            })
+            .catch(err => alert(err));
+    }, [])
+
     const handleSubmitClick = (e) => {
         e.preventDefault();
         const errObj = {
@@ -66,29 +88,29 @@ export default function AddLeagueForm({ profileData, isLoggedIn }) {
         const errVals = Object.values(errObj);
         const isFormInvalid = errVals.find(err => err === true);
 
-        if (!isFormInvalid) {
-            const newLeague = {
-                league_owner: profileData.id_user,
-                name,
-                sport,
-                gender,
-                start_date: startDate,
-                end_date: endDate,
-                description,
-                price,
-                address,
-                city,
-                province,
-                country,
-                postal_code: postal
-            }
+        // if (!isFormInvalid) {
+        //     const newLeague = {
+        //         league_owner: profileData.id_user,
+        //         name,
+        //         sport,
+        //         gender,
+        //         start_date: startDate,
+        //         end_date: endDate,
+        //         description,
+        //         price,
+        //         address,
+        //         city,
+        //         province,
+        //         country,
+        //         postal_code: postal
+        //     }
 
-            createNewLeague(newLeague)
-                .then(({ data }) => navigate(data))
-                .catch(err => alert(`Error adding new league: ${err}`))
-        } else {
-            setErrObj(errObj);
-        }
+        //         createNewLeague(newLeague)
+        //             .then(({ data }) => navigate(data))
+        //             .catch(err => alert(`Error adding new league: ${err}`))
+        //     } else {
+        //         setErrObj(errObj);
+        //     }
     }
 
 
@@ -97,7 +119,7 @@ export default function AddLeagueForm({ profileData, isLoggedIn }) {
             {isLoggedIn ? (
                 profileData && (
                     <>
-                        <h2 className='add-league__title'>Post Your League</h2>
+                        <h2 className='add-league__title'>Edit Your League</h2>
 
                         <form className='add-league-form' onSubmit={handleSubmitClick}>
 
@@ -105,13 +127,13 @@ export default function AddLeagueForm({ profileData, isLoggedIn }) {
                                 <div className='add-league-form__user-info'>
 
                                     <label htmlFor='add-league_name' className='add-league-form__label'>League Name</label>
-                                    <input onChange={handleNameChange} className='add-league-form__input' id='add-league_name' name='add-league_name' placeholder='Enter your league name...' />
+                                    <input value={name} onChange={handleNameChange} className='add-league-form__input' id='add-league_name' name='add-league_name' placeholder='Enter your league name...' />
 
                                     <label htmlFor='add-league_sport' className='add-league-form__label'>League Sport</label>
-                                    <input onChange={handleSportChange} className='add-league-form__input' id='add-league_sport' name='add-league_sport' placeholder='Enter your league sport...' />
+                                    <input value={sport} onChange={handleSportChange} className='add-league-form__input' id='add-league_sport' name='add-league_sport' placeholder='Enter your league sport...' />
 
                                     <label htmlFor='add-league_gender' className='add-league-form__label'>Men's / Women's / Co-Ed</label>
-                                    <select onChange={handleGenderChange} name='add-league_gender' id='add-league_gender' className='add-league-form__input'>
+                                    <select value={gender} onChange={handleGenderChange} name='add-league_gender' id='add-league_gender' className='add-league-form__input'>
                                         <option value=''>--Please Select An Option--</option>
                                         <option value={`Men's`}>Men's</option>
                                         <option value={`Women's`}>Women's</option>
@@ -119,37 +141,37 @@ export default function AddLeagueForm({ profileData, isLoggedIn }) {
                                     </select>
 
                                     <label htmlFor='add-league_start-date' className='add-league-form__label'>Start Date</label>
-                                    <input onChange={handleStartDateChange} type='date' className='add-league-form__input' id='add-league_start-date' name='add-league_start-date' placeholder='Enter your start date...' />
+                                    <input value={startDate} onChange={handleStartDateChange} type='date' className='add-league-form__input' id='add-league_start-date' name='add-league_start-date' placeholder='Enter your start date...' />
 
 
                                     <label htmlFor='add-league_end-date' className='add-league-form__label'>End Date</label>
-                                    <input onChange={handleEndDateChange} type='date' className='add-league-form__input' id='add-league_end-date' name='add-league_end-date' placeholder='Enter your end date...' />
+                                    <input value={endDate} onChange={handleEndDateChange} type='date' className='add-league-form__input' id='add-league_end-date' name='add-league_end-date' placeholder='Enter your end date...' />
 
 
                                     <label htmlFor='add-league_description' className='add-league-form__label'>Description</label>
-                                    <textarea onChange={handleDescriptionChange} className='add-league-form__input' id='add-league_description' name='add-league_description' placeholder='Enter a description...' />
+                                    <textarea value={description} onChange={handleDescriptionChange} className='add-league-form__input' id='add-league_description' name='add-league_description' placeholder='Enter a description...' />
                                 </div>
                                 <div className='add-user-form__user-address'>
 
 
 
                                     <label htmlFor='add-league_price' className='add-league-form__label'>Cost</label>
-                                    <input onChange={handlePriceChange} className='add-league-form__input' id='add-league_price' name='add-league_price' placeholder='Enter your league cost...' />
+                                    <input value={price} onChange={handlePriceChange} className='add-league-form__input' id='add-league_price' name='add-league_price' placeholder='Enter your league cost...' />
 
                                     <label htmlFor='add-league_address' className='add-league-form__label'>Street Address</label>
-                                    <input onChange={handleAddressChange} className='add-league-form__input' id='add-league_address' name='add-league_address' placeholder='Enter your address...' />
+                                    <input value={address} onChange={handleAddressChange} className='add-league-form__input' id='add-league_address' name='add-league_address' placeholder='Enter your address...' />
 
                                     <label htmlFor='add-league_city' className='add-league-form__label'>City</label>
-                                    <input onChange={handleCityChange} className='add-league-form__input' id='add-league_city' name='add-league_city' placeholder='Enter your city...' />
+                                    <input value={city} onChange={handleCityChange} className='add-league-form__input' id='add-league_city' name='add-league_city' placeholder='Enter your city...' />
 
                                     <label htmlFor='add-league_province' className='add-league-form__label'>Province</label>
-                                    <input onChange={handleProvinceChange} className='add-league-form__input' id='add-league_province' name='add-league_province' placeholder='Enter your province...' />
+                                    <input value={province} onChange={handleProvinceChange} className='add-league-form__input' id='add-league_province' name='add-league_province' placeholder='Enter your province...' />
 
                                     <label htmlFor='add-league_country' className='add-league-form__label'>Country</label>
-                                    <input onChange={handleCountryChange} className='add-league-form__input' id='add-league_country' name='add-league_country' placeholder='Enter your country...' />
+                                    <input value={country} onChange={handleCountryChange} className='add-league-form__input' id='add-league_country' name='add-league_country' placeholder='Enter your country...' />
 
                                     <label htmlFor='add-league_postal_code' className='add-league-form__label'>Postal Code</label>
-                                    <input onChange={handlePostalChange} className='add-league-form__input' id='add-league_postal_code' name='add-league_postal_code' placeholder='Enter your postal code...' />
+                                    <input value={postal} onChange={handlePostalChange} className='add-league-form__input' id='add-league_postal_code' name='add-league_postal_code' placeholder='Enter your postal code...' />
 
 
                                 </div>
