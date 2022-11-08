@@ -1,7 +1,7 @@
 import './LeagueDetails.scss';
 import mapPlaceholder from '../../assets/images/map-placeholder.png';
 import { useEffect, useState } from 'react';
-import { getLeagueById, getLeagueLocationByMap, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL, G_MAPS_STATIC_URL } from '../../utils/api';
+import { getLeagueById, getLeagueLocationByMap, getUsersInLeague, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL, G_MAPS_STATIC_URL } from '../../utils/api';
 import { useParams } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
@@ -12,6 +12,8 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
     const [showJoinLeague, setShowJoinLeague] = useState(false);
     const [leagueMember, setLeagueMember] = useState(false);
     const [convertedAddress, setConvertedAddress] = useState('')
+    const [usersInLeague, setUsersInLeague] = useState([]);
+    const [isLeagueOwner, setIsLeagueOwner] = useState(false);
 
 
 
@@ -21,9 +23,14 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                 setLeagueData(data[0]);
                 setConvertedAddress(data[0].address.replaceAll(' ', '+'))
                 setLeagueMember(leaguesJoined.find(league => league.id_league === Number(leagueId)));
+                setIsLeagueOwner(Number(data[0].league_owner) === Number(profileData.id_user));
+                return getUsersInLeague(data[0].id_league)
             })
+            .then(({ data }) => setUsersInLeague(data))
             .catch(err => console.log(err));
     }, [leaguesJoined])
+
+
 
 
     if (!leagueData) {
@@ -63,6 +70,19 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                         )
                         : <button onClick={() => window.location.href = '/login'} className='league-details__button league-details__button--login'>Login To Join</button>
                     }
+
+
+
+                    {/* {isLoggedIn
+                        ? ((leagueMember
+                            ? <button className='league-details__button league-details__button--member'>Member</button>
+                            : <button onClick={() => setShowJoinLeague(true)} className='league-details__button league-details__button--join'>Join League</button>
+                        )(isLeagueOwner
+                            ? <section>Yes this is league owner</section>
+                            : <section>Not league owner</section>
+                        ))
+                        : <button onClick={() => window.location.href = '/login'} className='league-details__button league-details__button--login'>Login To Join</button>
+                    } */}
 
                 </div>
             </div>
