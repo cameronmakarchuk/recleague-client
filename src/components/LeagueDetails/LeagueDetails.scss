@@ -2,6 +2,15 @@
 @use '../../styles/partials/typography' as *;
 @use '../../styles/partials/variables' as *;
 
+.access-error-msg {
+    width: 100vw;
+    padding: 1.0rem;
+
+    @include tablet {
+        padding: 2.0rem 2.25rem;
+    }
+}
+
 .league-details {
     width: 100vw;
     padding: 1.0rem;

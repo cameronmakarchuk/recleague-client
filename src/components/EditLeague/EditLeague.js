@@ -19,6 +19,7 @@ export default function EditLeague({ profileData, isLoggedIn }) {
     const [province, setProvince] = useState('');
     const [country, setCountry] = useState('');
     const [postal, setPostal] = useState('');
+    const [leagueOwner, setLeagueOwner] = useState('');
     const [errObj, setErrObj] = useState({});
 
     const handleNameChange = (e) => setName(e.target.value);
@@ -64,6 +65,7 @@ export default function EditLeague({ profileData, isLoggedIn }) {
                 setProvince(data.city);
                 setCountry(data.country);
                 setPostal(data.postal_code);
+                setLeagueOwner(data.league_owner);
             })
             .catch(err => alert(err));
     }, [])
@@ -111,6 +113,10 @@ export default function EditLeague({ profileData, isLoggedIn }) {
         } else {
             setErrObj(errObj);
         }
+    }
+
+    if (!isLoggedIn || Number(profileData.user_id) !== Number(leagueOwner)) {
+        return <p className='access-error-msg'>You do not have access to this page. Please either <a href='/login'>login</a>, or create a new league.</p>
     }
 
 
