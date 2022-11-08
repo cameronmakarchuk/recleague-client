@@ -118,6 +118,16 @@
             }
         }
 
+        &--manager {
+            background-color: $onyx;
+            border-color: $onyx;
+
+            &:hover {
+                background-color: $onyx;
+                cursor: default;
+            }
+        }
+
         &--join {
             background-color: $electric-blue;
             border-color: $electric-blue;

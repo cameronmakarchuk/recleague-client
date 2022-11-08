@@ -2,7 +2,7 @@ import './LeagueDetails.scss';
 import mapPlaceholder from '../../assets/images/map-placeholder.png';
 import { useEffect, useState } from 'react';
 import { getLeagueById, getLeagueLocationByMap, getUsersInLeague, G_MAPS_EMBED_API_KEY, G_MAPS_EMBED_URL, G_MAPS_STATIC_URL } from '../../utils/api';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
 
@@ -71,25 +71,31 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                         : <button onClick={() => window.location.href = '/login'} className='league-details__button league-details__button--login'>Login To Join</button>
                     }
 
+                    {isLoggedIn && isLeagueOwner
+                        && (
+                            <>
+                                <button className='league-details__button league-details__button--manager'>Manager</button>
 
+                                <article className='league-members'>
+                                    <h3 className='league-members__subheader'>League Members:</h3>
 
-                    {/* {isLoggedIn
-                        ? ((leagueMember
-                            ? <button className='league-details__button league-details__button--member'>Member</button>
-                            : <button onClick={() => setShowJoinLeague(true)} className='league-details__button league-details__button--join'>Join League</button>
-                        )(isLeagueOwner
-                            ? <section>Yes this is league owner</section>
-                            : <section>Not league owner</section>
-                        ))
-                        : <button onClick={() => window.location.href = '/login'} className='league-details__button league-details__button--login'>Login To Join</button>
-                    } */}
+                                    <ul>
+                                        {usersInLeague.map(user => {
+                                            return <li key={user.id_user}>
+                                                {user.first_name} {user.last_name}: <Link to={user.email}>{user.email}</Link>
+                                            </li>
+                                        })}
+                                    </ul>
+                                </article>
+                            </>
+                        )
+                    }
+
+                    {/* usersInLeague */}
+
 
                 </div>
             </div>
-
-
-
-
 
             <JoinLeagueModal
                 showJoinLeague={showJoinLeague}
