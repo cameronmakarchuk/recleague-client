@@ -8,6 +8,7 @@
 
     @include tablet {
         padding: 2.0rem 2.25rem;
+        position: relative;
     }
 
     &__title {
@@ -33,10 +34,6 @@
 
         @include tablet {
             width: 50%;
-
-            &:hover {
-                transform: scale(1.4) translate(145px, -20px);
-            }
         }
     }
 
@@ -121,6 +118,15 @@
         &--manager {
             background-color: $onyx;
             border-color: $onyx;
+            margin-left: 1.0rem;
+
+            @include tablet {
+                // margin: 1.0rem 0 0;
+                position: absolute;
+                top: 1.0rem;
+                right: 2.0rem;
+                width: fit-content;
+            }
 
             &:hover {
                 background-color: $onyx;
@@ -138,5 +144,57 @@
             }
         }
     }
+}
 
+.league-members {
+    width: 100%;
+    padding: 1.0rem 0;
+
+    @include tablet {
+        padding: 2.0rem 0;
+    }
+
+    &__subheader {
+        @include pageSubheader;
+        margin: 0;
+        padding-bottom: 0.5rem;
+
+        @include tablet {
+            padding-bottom: 1.0rem;
+        }
+    }
+
+    &__user-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+
+    &__user {
+        @include bodyCopy;
+        padding: 0.25rem 0;
+        border-bottom: 0.5px solid $onyx;
+
+        @include tablet {
+            padding: 0.5rem 0;
+        }
+
+        &:hover {
+            background-color: lighten($silver, 15%);
+        }
+    }
+
+    &__user-email-link {
+        @include bodyCopy;
+        margin-left: 0.5rem;
+        text-decoration: none;
+
+        @include tablet {
+            margin-left: 0.75rem;
+        }
+
+        &:hover {
+            color: $silver;
+        }
+    }
 }
