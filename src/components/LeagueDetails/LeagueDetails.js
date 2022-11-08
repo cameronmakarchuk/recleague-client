@@ -1,4 +1,5 @@
 import './LeagueDetails.scss';
+import editIcon from '../../assets/icons/edit-icon.svg';
 import { useEffect, useState } from 'react';
 import { getLeagueById, getUsersInLeague, G_MAPS_EMBED_API_KEY, G_MAPS_STATIC_URL } from '../../utils/api';
 import { useParams, Link } from 'react-router-dom';
@@ -38,7 +39,15 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
 
     return (
         <section className='league-details'>
-            <h2 className='league-details__title'>{leagueData.name}</h2>
+            <div className='league-details__title-wrapper'>
+                <h2 className='league-details__title'>{leagueData.name}</h2>
+
+                {isLeagueOwner &&
+
+                    <Link to={`/edit-league/${leagueId}`} className='league-details__edit-icon'>
+                        <img src={editIcon} className='league-details__edit-icon--img' alt='edit icon' />
+                    </Link>}
+            </div>
 
             <div className='league-details__map-info-wrapper'>
                 <img src={`${G_MAPS_STATIC_URL}?size=800x350&zoom=15&markers=${convertedAddress},${leagueData.city},${leagueData.province}&key=${G_MAPS_EMBED_API_KEY}`} className='league-details__map-image' alt='map' />

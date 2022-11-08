@@ -11,6 +11,12 @@
         position: relative;
     }
 
+    &__title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
     &__title {
         @include pageHeader;
         margin: 0;
@@ -19,6 +25,32 @@
         @include tablet {
             padding: 0.25rem 0 2.0rem;
         }
+    }
+
+    &__edit-icon {
+        background-color: $onyx;
+        border-radius: 50%;
+        width: fit-content;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.75rem;
+
+        &:hover {
+            background-color: darken($onyx, 15%);
+        }
+
+        &--img {
+            width: 14px;
+            height: 14px;
+
+            @include tablet {
+                width: 20px;
+                height: 20px
+            }
+        }
+
     }
 
     &__map-info-wrapper {
@@ -123,7 +155,7 @@
             @include tablet {
                 position: absolute;
                 top: 1.0rem;
-                right: 2.0rem;
+                right: 6.0rem;
                 width: fit-content;
             }
 
