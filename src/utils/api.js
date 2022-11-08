@@ -27,3 +27,5 @@ export const postJoinLeague = (details) => axios.post(`${API_URL}/league-details
 export const getLeaguesJoinedByUser = (userId) => axios.get(`${API_URL}/league-details/leagues/${userId}`);
 
 export const getUsersInLeague = (leagueId) => axios.get(`${API_URL}/league-details/users/${leagueId}`);
+
+export const editLeagueById = (leagueId, editedLeague) => axios.patch(`${API_URL}/leagues/${leagueId}`, editedLeague);

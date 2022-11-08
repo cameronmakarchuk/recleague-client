@@ -1,7 +1,7 @@
 import '../AddLeagueForm/AddLeagueForm.scss';
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { createNewLeague, getLeagueById } from '../../utils/api';
+import { createNewLeague, editLeagueById, getLeagueById } from '../../utils/api';
 
 
 export default function EditLeague({ profileData, isLoggedIn }) {
@@ -88,29 +88,29 @@ export default function EditLeague({ profileData, isLoggedIn }) {
         const errVals = Object.values(errObj);
         const isFormInvalid = errVals.find(err => err === true);
 
-        // if (!isFormInvalid) {
-        //     const newLeague = {
-        //         league_owner: profileData.id_user,
-        //         name,
-        //         sport,
-        //         gender,
-        //         start_date: startDate,
-        //         end_date: endDate,
-        //         description,
-        //         price,
-        //         address,
-        //         city,
-        //         province,
-        //         country,
-        //         postal_code: postal
-        //     }
+        if (!isFormInvalid) {
+            const editedLeague = {
+                league_owner: profileData.id_user,
+                name,
+                sport,
+                gender,
+                start_date: startDate,
+                end_date: endDate,
+                description,
+                price,
+                address,
+                city,
+                province,
+                country,
+                postal_code: postal
+            }
 
-        //         createNewLeague(newLeague)
-        //             .then(({ data }) => navigate(data))
-        //             .catch(err => alert(`Error adding new league: ${err}`))
-        //     } else {
-        //         setErrObj(errObj);
-        //     }
+            editLeagueById(leagueId, editedLeague)
+                .then(({ data }) => navigate(`/leagues/${data}`))
+                .catch(err => alert(`Error editing your league: ${err}`))
+        } else {
+            setErrObj(errObj);
+        }
     }
 
 
