@@ -1,4 +1,5 @@
 import './ProfilePage.scss';
+import editIcon from '../../assets/icons/edit-icon.svg';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { getLeaguesByUserId, API_URL, getLeaguesJoinedByUser } from '../../utils/api';
@@ -42,7 +43,14 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, l
             {isLoggedIn ? (
                 profileData && (
                     <>
-                        <h2 className='profile__title'>{profileData.first_name} {profileData.last_name}</h2>
+                        <div className='profile__title-wrapper'>
+                            <h2 className='profile__title'>{profileData.first_name} {profileData.last_name}</h2>
+
+                            <Link to={`/edit-user/${profileData.id_user}`} className='profile__edit-icon'>
+                                <img src={editIcon} className='profile__edit-icon--img' alt='edit icon' />
+                            </Link>
+                        </div>
+
                         <div className='profile__user'>
                             <img src={`${API_URL}/${profileData.avatar_img}`} className='profile__avatar' alt='profile avatar' />
 

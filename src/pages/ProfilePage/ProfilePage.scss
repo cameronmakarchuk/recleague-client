@@ -10,6 +10,12 @@
         padding: 2.0rem 2.25rem;
     }
 
+    &__title-wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
     &__title {
         @include pageHeader;
         margin: 0;
@@ -17,6 +23,31 @@
 
         @include tablet {
             padding-bottom: 1.5rem;
+        }
+    }
+
+    &__edit-icon {
+        background-color: $onyx;
+        border-radius: 50%;
+        width: fit-content;
+        padding: 0.5rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 0.75rem;
+
+        &:hover {
+            background-color: darken($onyx, 15%);
+        }
+
+        &--img {
+            width: 14px;
+            height: 14px;
+
+            @include tablet {
+                width: 20px;
+                height: 20px
+            }
         }
     }
 
