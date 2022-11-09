@@ -12,6 +12,7 @@ import LoginPage from './pages/LoginPage/LoginPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
 import { getProfileData, getLeaguesJoinedByUser } from './utils/api';
 import EditLeague from './components/EditLeague/EditLeague';
+import EditUser from './components/EditUser/EditUser';
 
 function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -71,6 +72,8 @@ function App() {
 				/>
 				<Route path='/add-user' element={<AddUserForm />} />
 
+				<Route path='/edit-user/:userId' element={<EditUser profileData={profileData} />} />
+
 				<Route path='/add-league' element={<AddLeagueForm
 					isLoggedIn={isLoggedIn}
 					profileData={profileData}
@@ -80,6 +83,8 @@ function App() {
 					isLoggedIn={isLoggedIn}
 					profileData={profileData}
 				/>} />
+
+
 
 			</Routes>
 			<PageFooter />

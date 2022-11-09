@@ -12,6 +12,8 @@ export const getSearchResults = (location, sport) => axios.get(`${API_URL}/leagu
 
 export const getLeagueById = (leagueId) => axios.get(`${API_URL}/leagues/${leagueId}`);
 
+export const getUserById = (userId) => axios.get(`${API_URL}/users/${userId}`);
+
 export const createNewUser = (newUser) => axios.post(`${API_URL}/users`, newUser);
 
 export const createNewLeague = (newLeague) => axios.post(`${API_URL}/leagues`, newLeague);
@@ -29,3 +31,5 @@ export const getLeaguesJoinedByUser = (userId) => axios.get(`${API_URL}/league-d
 export const getUsersInLeague = (leagueId) => axios.get(`${API_URL}/league-details/users/${leagueId}`);
 
 export const editLeagueById = (leagueId, editedLeague) => axios.patch(`${API_URL}/leagues/${leagueId}`, editedLeague);
+
+export const editUserById = (userId, editedUser) => axios.patch(`${API_URL}/users/${userId}`, editedUser);
