@@ -33,9 +33,9 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, l
         window.location.href = '/login';
     }
 
-    if (!isLoggedIn) {
-        return window.location.href = '/login';
-    }
+    // if (!isLoggedIn) {
+    //     return window.location.href = '/login';
+    // }
 
     return (
 
@@ -98,7 +98,6 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, l
                 )
             ) : (
                 <>
-                    <p>{errorMessage}</p>
                     <p>Login to view this page:</p>
                     <Link to='/login'>Click here to login</Link>
                 </>

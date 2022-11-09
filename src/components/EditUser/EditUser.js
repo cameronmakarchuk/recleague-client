@@ -142,8 +142,10 @@ export default function EditUser({ profileData }) {
                 </div>
 
 
-                <button type='submit' className='add-user-form__submit'>Submit</button>
-
+                <div className='add-user-form__buttons'>
+                    <Link to='/profile' className='add-user-form__button add-user-form__button--cancel'>Cancel</Link>
+                    <button type='submit' className='add-user-form__button'>Submit</button>
+                </div>
             </form>
         </section>
     )

@@ -95,14 +95,39 @@
         }
     }
 
-    &__submit {
+    &__buttons {
+        display: flex;
+        justify-content: space-between;
+
+        @include tablet {
+            width: 45%;
+            align-self: flex-end;
+        }
+    }
+
+    &__button {
         @include submitButton;
         margin-top: 0.5rem;
 
         @include tablet {
             width: 45%;
-            align-self: flex-end;
             margin-top: 1.5rem;
+        }
+
+        &--cancel {
+            background-color: $onyx;
+            border-color: $onyx;
+            text-decoration: none;
+            text-align: center;
+
+            @include tablet {
+                margin-right: 0;
+            }
+
+            &:hover {
+                background-color: darken($onyx, 15%);
+                cursor: pointer;
+            }
         }
     }
 }

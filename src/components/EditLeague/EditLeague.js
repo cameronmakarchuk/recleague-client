@@ -184,7 +184,11 @@ export default function EditLeague({ profileData, isLoggedIn }) {
                                 </div>
                             </div>
 
-                            <button type='submit' className='add-league-form__submit'>Submit</button>
+                            <div className='add-league-form__buttons'>
+                                <Link to={`/leagues/${leagueId}`} className='add-league-form__button add-league-form__button--cancel'>Cancel</Link>
+                                <button type='submit' className='add-league-form__button'>Submit</button>
+                            </div>
+
                         </form>
                     </>
                 )
