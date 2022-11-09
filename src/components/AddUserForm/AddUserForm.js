@@ -78,7 +78,6 @@ export default function AddUserForm() {
 
             createNewUser(formData)
                 .then(() => {
-                    alert(`${firstName}'s profile was created!`);
                     navigate('/login');
                 })
                 .catch(err => alert(`Error adding new user profile: ${err}`));
