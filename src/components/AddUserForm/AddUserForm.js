@@ -41,7 +41,6 @@ export default function AddUserForm() {
     const isProvinceInvalid = () => !province;
     const isCountryInvalid = () => !country;
     const isPostalInvalid = () => !postal;
-    // const isProfileImgInvalid = () => !profileImg;
 
     const handleSubmitClick = (e) => {
         e.preventDefault();
@@ -55,7 +54,6 @@ export default function AddUserForm() {
             province: isProvinceInvalid(),
             country: isCountryInvalid(),
             postal: isPostalInvalid(),
-            // profileImg: isProfileImgInvalid()
         }
 
         const errVals = Object.values(errObj);
