@@ -13,7 +13,6 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, setIsLoginError, 
             .then((resp) => {
                 if (resp.status === 403) {
                     setIsLoginError(true);
-                    // setErrorMessage(resp.error.message);
                 } else {
                     const bearerToken = resp.data.token;
                     sessionStorage.bearerToken = bearerToken;

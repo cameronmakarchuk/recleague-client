@@ -12,6 +12,12 @@
         flex-direction: column;
     }
 
+    @include desktop {
+        padding: 2.25rem 3.5rem;
+        display: flex;
+        flex-direction: column;
+    }
+
     &__title {
         @include pageHeader;
         margin: 0;
@@ -19,6 +25,10 @@
 
         @include tablet {
             padding: 0.25rem 0 2.0rem;
+        }
+
+        @include desktop {
+            padding: 0.5rem 0 2.25rem;
         }
     }
 
@@ -47,6 +57,11 @@
         align-self: flex-end;
     }
 
+    @include desktop {
+        max-width: 33%;
+        align-self: center;
+    }
+
     &__label {
         @include formLabel;
     }
@@ -61,6 +76,10 @@
         margin-top: 0.5rem;
 
         @include tablet {
+            margin-top: 1.5rem;
+        }
+
+        @include desktop {
             margin-top: 1.5rem;
         }
     }
