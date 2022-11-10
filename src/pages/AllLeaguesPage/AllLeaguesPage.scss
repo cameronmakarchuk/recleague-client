@@ -10,6 +10,10 @@
         padding: 2.0rem 2.25rem;
     }
 
+    @include desktop {
+        padding: 2.25rem 3.5rem;
+    }
+
     &__title {
         @include pageHeader;
         margin: 0;
@@ -17,6 +21,10 @@
 
         @include tablet {
             padding: 0.25rem 0 2.0rem;
+        }
+
+        @include desktop {
+            padding: 0.5rem 0 2.25rem;
         }
     }
 }

@@ -1,5 +1,4 @@
 import LeaguesCard from '../LeaguesCard/LeaguesCard';
-import './AllLeaguesList.scss';
 import '../../utils/api';
 import { useState, useEffect } from 'react';
 import { getAllLeagues } from '../../utils/api';
