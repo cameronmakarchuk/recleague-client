@@ -9,6 +9,7 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, setIsLoginError, 
         e.preventDefault();
         const email = e.target.login_email.value;
         const password = e.target.login_password.value;
+        console.log('handle login')
         loginUser({ email, password })
             .then((resp) => {
                 if (resp.status === 403) {

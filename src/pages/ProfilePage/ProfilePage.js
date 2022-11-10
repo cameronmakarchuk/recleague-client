@@ -1,45 +1,40 @@
 import './ProfilePage.scss';
 import editIcon from '../../assets/icons/edit-icon.svg';
 import { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { getLeaguesByUserId, API_URL } from '../../utils/api';
 
 
 export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) {
-    const [leaguesByUser, setLeaguesByUser] = useState(null)
-    const [showLeaguesJoined, setShowLeaguesJoined] = useState(false)
-    const [showLeaguesManaged, setShowLeaguesManaged] = useState(false)
+    const [leaguesByUser, setLeaguesByUser] = useState([])
+
+    const navigate = useNavigate();
+
+
 
     useEffect(() => {
-        if (!profileData) {
-            return;
-        }
 
+        // if (!profileData) {
+        //     navigate('/')
+        //     return;
+        // }
+        console.log('in effect')
         const { id_user } = profileData;
         getLeaguesByUserId(id_user)
             .then(resp => {
-                if (resp.status === 200 && resp.data.length !== 0) {
-                    setLeaguesByUser(resp.data);
-                    setShowLeaguesManaged(true);
-                } else {
-                    setLeaguesByUser(null);
-                    setShowLeaguesManaged(false);
-                }
-
-                if (leaguesJoined.length === 0) {
-                    setShowLeaguesJoined(false)
-                } else {
-                    setShowLeaguesJoined(true)
-                }
+                setLeaguesByUser(resp.data);
             })
             .catch(err => console.log(err));
-    }, [leaguesJoined])
+    }, [])
 
 
     const handleLogout = () => {
         sessionStorage.clear();
         window.location.href = '/login';
     }
+
+    const showLeaguesJoined = !!leaguesJoined.length;
+    const showLeaguesManaged = !!leaguesByUser.length;
 
 
     return (
@@ -69,7 +64,7 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
                             </div>
                         </div>
 
-                        {!!showLeaguesJoined
+                        {showLeaguesJoined
                             ? <>
                                 <p className='profile__text profile__text--emphasis'>Leagues You're In: </p>
                                 <ul className='profile__league-list'>

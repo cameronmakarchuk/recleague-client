@@ -19,18 +19,17 @@ function App() {
 	const [isLoginError, setIsLoginError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
 	const [profileData, setProfileData] = useState(null);
-	const [leaguesJoined, setLeaguesJoined] = useState(null)
+	const [leaguesJoined, setLeaguesJoined] = useState([])
 
 
 	useEffect(() => {
 		if (!sessionStorage.bearerToken) {
 			return;
 		}
-
+		console.log('in app use effect')
 		const authorization = { headers: { Authorization: sessionStorage.bearerToken } };
 		getProfileData(authorization)
 			.then(({ data }) => {
-				// setIsSignedUp(true);
 				setIsLoggedIn(true);
 				setProfileData(data)
 				return getLeaguesJoinedByUser(profileData.id_user);
@@ -39,7 +38,7 @@ function App() {
 				setLeaguesJoined(data);
 			})
 			.catch(err => setErrorMessage(err.message))
-	}, [profileData])
+	}, [])
 
 	return (
 		<BrowserRouter>
