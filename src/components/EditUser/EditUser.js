@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link, useParams } from 'react-router-dom';
-import { createNewUser, editUserById, getUserById } from '../../utils/api';
+import { editUserById, getUserById } from '../../utils/api';
 import '../AddUserForm/AddUserForm.scss';
 
 
-export default function EditUser({ profileData }) {
+export default function EditUser() {
     const navigate = useNavigate();
     const { userId } = useParams();
 
