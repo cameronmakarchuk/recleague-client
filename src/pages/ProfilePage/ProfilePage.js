@@ -2,13 +2,11 @@ import './ProfilePage.scss';
 import editIcon from '../../assets/icons/edit-icon.svg';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { getLeaguesByUserId, API_URL, getLeaguesJoinedByUser } from '../../utils/api';
+import { getLeaguesByUserId, API_URL } from '../../utils/api';
 
 
-export default function ProfilePage({ isLoggedIn, profileData, setProfileData, leaguesJoined, errorMessage }) {
+export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) {
     const [leaguesByUser, setLeaguesByUser] = useState(null)
-
-
 
     useEffect(() => {
         if (!profileData) {
@@ -33,9 +31,6 @@ export default function ProfilePage({ isLoggedIn, profileData, setProfileData, l
         window.location.href = '/login';
     }
 
-    // if (!isLoggedIn) {
-    //     return window.location.href = '/login';
-    // }
 
     return (
 
