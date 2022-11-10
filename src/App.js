@@ -26,7 +26,6 @@ function App() {
 		if (!sessionStorage.bearerToken) {
 			return;
 		}
-		console.log('in app use effect')
 		const authorization = { headers: { Authorization: sessionStorage.bearerToken } };
 		getProfileData(authorization)
 			.then(({ data }) => {

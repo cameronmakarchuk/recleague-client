@@ -18,7 +18,6 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
         //     navigate('/')
         //     return;
         // }
-        console.log('in effect')
         const { id_user } = profileData;
         getLeaguesByUserId(id_user)
             .then(resp => {
