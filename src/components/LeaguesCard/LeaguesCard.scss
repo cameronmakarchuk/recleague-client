@@ -16,6 +16,12 @@
         margin-bottom: 1.5rem;
     }
 
+    @include desktop {
+        padding: 1.25rem;
+        padding-left: 2.25rem;
+        margin-bottom: 1.75rem;
+    }
+
     &:hover {
         transform: scale(1.02);
     }
@@ -46,6 +52,10 @@
         @include tablet {
             padding-left: 8.0rem;
         }
+
+        @include desktop {
+            padding-left: 8.5rem;
+        }
     }
 
     &__sport,
@@ -55,10 +65,6 @@
         @include bodyCopy;
         font-size: 10px;
         margin: 0;
-    }
-
-    &__image {
-        width: 30%;
     }
 
 
