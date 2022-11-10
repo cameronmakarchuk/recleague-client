@@ -1,7 +1,7 @@
 import '../AddLeagueForm/AddLeagueForm.scss';
 import { useNavigate, Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { createNewLeague, editLeagueById, getLeagueById } from '../../utils/api';
+import { editLeagueById, getLeagueById } from '../../utils/api';
 
 
 export default function EditLeague({ profileData, isLoggedIn }) {
