@@ -3,7 +3,7 @@ import axios from 'axios';
 export const G_MAPS_STATIC_URL = 'https://maps.googleapis.com/maps/api/staticmap';
 export const G_MAPS_EMBED_API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY ?? 'AIzaSyC72XFtnzES-erwicBGL1G4g6ipjh1M5TY';
 
-export const API_URL = process.env.REACT_APP_SERVER_URL ?? 'http://localhost:8080';
+export const API_URL = process.env.REACT_APP_SERVER_URL;
 
 export const getAllLeagues = () => axios.get(`${API_URL}/leagues`);
 
