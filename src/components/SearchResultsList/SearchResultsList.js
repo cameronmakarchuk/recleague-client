@@ -1,7 +1,7 @@
 import LeaguesCard from '../LeaguesCard/LeaguesCard';
 import './SearchResultsList.scss';
 
-export default function SearchResultsList({ searchResults, location, sport }) {
+export default function SearchResultsList({ searchResults }) {
 
 
     return (

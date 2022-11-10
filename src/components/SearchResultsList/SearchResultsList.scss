@@ -13,5 +13,9 @@
         @include tablet {
             padding-bottom: 1.5rem;
         }
+
+        @include desktop {
+            padding-bottom: 1.75rem;
+        }
     }
 }

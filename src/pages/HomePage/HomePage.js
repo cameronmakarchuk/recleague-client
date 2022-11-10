@@ -1,11 +1,9 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import SearchResultsList from '../../components/SearchResultsList/SearchResultsList';
 import { getSearchResults } from '../../utils/api';
 import './HomePage.scss';
 
 export default function HomePage() {
-    const navigate = useNavigate();
     const [location, setLocation] = useState('');
     const [sport, setSport] = useState('');
     const [searchResults, setSearchResults] = useState(null);
@@ -29,14 +27,6 @@ export default function HomePage() {
                 setSearchResults(data);
             })
             .catch(err => setError(err));
-
-        // if (error !== '') {
-        //     return <p>Sorry, we couldn't load the data. Error: {error}</p>
-        // }
-
-        // if (!searchResults) {
-        //     return <p>Loading...</p>;
-        // }
 
         e.target.reset()
 
