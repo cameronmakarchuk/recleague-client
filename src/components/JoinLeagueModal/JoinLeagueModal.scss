@@ -26,6 +26,12 @@
         top: 95px;
     }
 
+    @include desktop {
+        width: 80%;
+        padding: 1.75rem;
+        top: 150px;
+    }
+
     &__title {
         @include pageHeader;
     }
@@ -48,6 +54,10 @@
             padding: 0 1.0rem;
         }
 
+        @include desktop {
+            padding: 0 1.25rem;
+        }
+
     }
 
     &__checkbox {
@@ -62,6 +72,11 @@
         @include tablet {
             margin: 2.0rem 0 0.5rem;
             justify-content: space-between;
+        }
+
+        @include desktop {
+            margin: 2.25rem 0 0.75rem;
+            justify-content: flex-end;
         }
     }
 
@@ -79,6 +94,10 @@
 
             @include tablet {
                 margin-right: 0;
+            }
+
+            @include desktop {
+                margin-right: 1.0rem;
             }
 
             &:hover {
