@@ -7,6 +7,8 @@ import { getLeaguesByUserId, API_URL } from '../../utils/api';
 
 export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) {
     const [leaguesByUser, setLeaguesByUser] = useState(null)
+    const [showLeaguesJoined, setShowLeaguesJoined] = useState(false)
+    const [showLeaguesManaged, setShowLeaguesManaged] = useState(false)
 
     useEffect(() => {
         if (!profileData) {
@@ -16,14 +18,22 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
         const { id_user } = profileData;
         getLeaguesByUserId(id_user)
             .then(resp => {
-                if (resp.status === 200 && resp.data !== undefined) {
+                if (resp.status === 200 && resp.data.length !== 0) {
                     setLeaguesByUser(resp.data);
+                    setShowLeaguesManaged(true);
                 } else {
-                    setLeaguesByUser(null)
+                    setLeaguesByUser(null);
+                    setShowLeaguesManaged(false);
+                }
+
+                if (leaguesJoined.length === 0) {
+                    setShowLeaguesJoined(false)
+                } else {
+                    setShowLeaguesJoined(true)
                 }
             })
             .catch(err => console.log(err));
-    }, [])
+    }, [leaguesJoined])
 
 
     const handleLogout = () => {
@@ -59,7 +69,7 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
                             </div>
                         </div>
 
-                        {leaguesJoined
+                        {!!showLeaguesJoined
                             ? <>
                                 <p className='profile__text profile__text--emphasis'>Leagues You're In: </p>
                                 <ul className='profile__league-list'>
@@ -72,7 +82,7 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
                             : <p>You're not currently in any leagues.</p>
                         }
 
-                        {leaguesByUser
+                        {showLeaguesManaged
                             ? <>
                                 <p className='profile__text profile__text--emphasis'>Leagues You Manage: </p>
                                 <ul className='profile__league-list'>
