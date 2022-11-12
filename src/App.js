@@ -47,6 +47,7 @@ function App() {
 					isLoggedIn={isLoggedIn}
 					profileData={profileData}
 					leaguesJoined={leaguesJoined}
+					setLeaguesJoined={setLeaguesJoined}
 				/>} />
 				<Route path='/login' element={<LoginPage
 					isLoggedIn={isLoggedIn}

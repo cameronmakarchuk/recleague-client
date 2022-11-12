@@ -1,8 +1,8 @@
-import { postJoinLeague } from '../../utils/api';
+import { getLeaguesJoinedByUser, postJoinLeague } from '../../utils/api';
 import './JoinLeagueModal.scss';
 
 
-export default function JoinLeagueModal({ showJoinLeague, setShowJoinLeague, leagueData, profileData }) {
+export default function JoinLeagueModal({ showJoinLeague, setShowJoinLeague, leagueData, profileData, setLeaguesJoined }) {
 
 
     const handleCloseJoinLeague = () => setShowJoinLeague(false);
@@ -15,11 +15,15 @@ export default function JoinLeagueModal({ showJoinLeague, setShowJoinLeague, lea
         postJoinLeague(details)
             .then(() => {
                 document.querySelector('.join-league').innerHTML = `You've successfully joined ${leagueData.name}! You'll recieve an email after we review your application.`
-                setTimeout(() => {
-                    setShowJoinLeague(false);
-                }, 4000)
+                return getLeaguesJoinedByUser(profileData.id_user)
+            })
+            .then(({ data }) => {
+                setLeaguesJoined(data)
             })
             .catch(err => console.log(err));
+        setTimeout(() => {
+            setShowJoinLeague(false);
+        }, 3000)
     }
 
     if (!showJoinLeague) return;

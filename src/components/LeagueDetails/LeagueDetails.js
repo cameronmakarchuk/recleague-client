@@ -6,9 +6,9 @@ import { useParams, Link } from 'react-router-dom';
 import JoinLeagueModal from '../JoinLeagueModal/JoinLeagueModal';
 
 
-export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }) {
+export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined, setLeaguesJoined }) {
     const { leagueId } = useParams();
-    const [leagueData, setLeagueData] = useState(null);
+    const [leagueData, setLeagueData] = useState({});
     const [showJoinLeague, setShowJoinLeague] = useState(false);
     const [leagueMember, setLeagueMember] = useState(false);
     const [convertedAddress, setConvertedAddress] = useState('')
@@ -108,6 +108,7 @@ export default function LeagueDetails({ isLoggedIn, profileData, leaguesJoined }
                 setShowJoinLeague={setShowJoinLeague}
                 leagueData={leagueData}
                 profileData={profileData}
+                setLeaguesJoined={setLeaguesJoined}
             />
 
 
