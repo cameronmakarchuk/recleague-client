@@ -10,7 +10,7 @@ import AddUserForm from './components/AddUserForm/AddUserForm';
 import AddLeagueForm from './components/AddLeagueForm/AddLeagueForm';
 import LoginPage from './pages/LoginPage/LoginPage';
 import ProfilePage from './pages/ProfilePage/ProfilePage';
-import { getProfileData, getLeaguesJoinedByUser } from './utils/api';
+import { getProfileData } from './utils/api';
 import EditLeague from './components/EditLeague/EditLeague';
 import EditUser from './components/EditUser/EditUser';
 
@@ -18,7 +18,7 @@ function App() {
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 	const [isLoginError, setIsLoginError] = useState(false);
 	const [errorMessage, setErrorMessage] = useState('');
-	const [profileData, setProfileData] = useState(null);
+	const [profileData, setProfileData] = useState({});
 	const [leaguesJoined, setLeaguesJoined] = useState([])
 
 
@@ -31,10 +31,6 @@ function App() {
 			.then(({ data }) => {
 				setIsLoggedIn(true);
 				setProfileData(data)
-				return getLeaguesJoinedByUser(profileData.id_user);
-			})
-			.then(({ data }) => {
-				setLeaguesJoined(data);
 			})
 			.catch(err => setErrorMessage(err.message))
 	}, [])
@@ -66,6 +62,7 @@ function App() {
 					setProfileData={setProfileData}
 					errorMessage={errorMessage}
 					leaguesJoined={leaguesJoined}
+					setLeaguesJoined={setLeaguesJoined}
 				/>}
 				/>
 				<Route path='/add-user' element={<AddUserForm />} />

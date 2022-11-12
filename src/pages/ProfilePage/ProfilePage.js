@@ -2,28 +2,32 @@ import './ProfilePage.scss';
 import editIcon from '../../assets/icons/edit-icon.svg';
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { getLeaguesByUserId, API_URL } from '../../utils/api';
+import { getLeaguesManaged, API_URL, getLeaguesJoinedByUser } from '../../utils/api';
 
 
-export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) {
-    const [leaguesByUser, setLeaguesByUser] = useState([])
+export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined, setLeaguesJoined }) {
+    const [leaguesManaged, setLeaguesManaged] = useState([])
 
     const navigate = useNavigate();
 
-
-
     useEffect(() => {
 
-        // if (!profileData) {
-        //     navigate('/')
-        //     return;
-        // }
-        const { id_user } = profileData;
-        getLeaguesByUserId(id_user)
-            .then(resp => {
-                setLeaguesByUser(resp.data);
-            })
-            .catch(err => console.log(err));
+        if (!profileData) {
+            navigate('/')
+            return;
+        }
+        setTimeout(() => {
+            const { id_user } = profileData;
+            getLeaguesManaged(id_user)
+                .then(resp => {
+                    setLeaguesManaged(resp.data);
+                    return getLeaguesJoinedByUser(id_user)
+                })
+                .then(({ data }) => {
+                    setLeaguesJoined(data)
+                })
+                .catch(err => console.log(err));
+        }, 50)
     }, [])
 
 
@@ -33,7 +37,7 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
     }
 
     const showLeaguesJoined = !!leaguesJoined.length;
-    const showLeaguesManaged = !!leaguesByUser.length;
+    const showLeaguesManaged = !!leaguesManaged.length;
 
 
     return (
@@ -68,7 +72,7 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
                                 <p className='profile__text profile__text--emphasis'>Leagues You're In: </p>
                                 <ul className='profile__league-list'>
                                     {leaguesJoined.map(league => {
-                                        return <li className='profile__league-list-item' key={league.id_league}><Link className='profile__league-link' to={`/leagues/${league.id_league}`}>{league.name}</Link></li>
+                                        return <li className='profile__league-list-item' key={`j-${league.id_league}`}><Link className='profile__league-link' to={`/leagues/${league.id_league}`}>{league.name}</Link></li>
                                     }
                                     )}
                                 </ul>
@@ -80,8 +84,8 @@ export default function ProfilePage({ isLoggedIn, profileData, leaguesJoined }) 
                             ? <>
                                 <p className='profile__text profile__text--emphasis'>Leagues You Manage: </p>
                                 <ul className='profile__league-list'>
-                                    {leaguesByUser.map(league => {
-                                        return <li className='profile__league-list-item' key={league.id_league}><Link className='profile__league-link' to={`/leagues/${league.id_league}`}>{league.name}</Link></li>
+                                    {leaguesManaged.map(league => {
+                                        return <li className='profile__league-list-item' key={`m-${league.id_league}`}><Link className='profile__league-link' to={`/leagues/${league.id_league}`}>{league.name}</Link></li>
                                     }
                                     )}
                                 </ul>
