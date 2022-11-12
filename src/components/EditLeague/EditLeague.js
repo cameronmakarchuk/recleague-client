@@ -108,7 +108,10 @@ export default function EditLeague({ profileData, isLoggedIn }) {
             }
 
             editLeagueById(leagueId, editedLeague)
-                .then(({ data }) => navigate(`/leagues/${data}`))
+                .then(({ data }) => {
+                    console.log(data)
+                    navigate(`/leagues/${data}`)
+                })
                 .catch(err => alert(`Error editing your league: ${err}`))
         } else {
             setErrObj(errObj);
