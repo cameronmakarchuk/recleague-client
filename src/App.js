@@ -68,7 +68,7 @@ function App() {
 				/>
 				<Route path='/add-user' element={<AddUserForm />} />
 
-				<Route path='/edit-user/:userId' element={<EditUser />} />
+				<Route path='/edit-user/:userId' element={<EditUser setProfileData={setProfileData} />} />
 
 				<Route path='/add-league' element={<AddLeagueForm
 					isLoggedIn={isLoggedIn}

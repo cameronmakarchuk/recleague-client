@@ -4,7 +4,7 @@ import { editUserById, getUserById } from '../../utils/api';
 import '../AddUserForm/AddUserForm.scss';
 
 
-export default function EditUser() {
+export default function EditUser({ setProfileData }) {
     const navigate = useNavigate();
     const { userId } = useParams();
 
@@ -89,9 +89,11 @@ export default function EditUser() {
 
             editUserById(userId, editedUser)
                 .then(() => {
-                    navigate('/profile');
+                    return getUserById(userId)
                 })
+                .then(({ data }) => setProfileData(data))
                 .catch(err => alert(`Error editing your user profile: ${err}`));
+            navigate('/profile');
         } else {
             setErrObj(errObj);
         }
