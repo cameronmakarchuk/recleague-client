@@ -14,19 +14,20 @@ export default function LoginPage({ isLoggedIn, setIsLoggedIn, setIsLoginError, 
                 if (resp.status === 403) {
                     setIsLoginError(true);
                 } else {
-
+                    e.target.innerHTML = 'Logging in...'
                     const bearerToken = resp.data.token;
                     sessionStorage.bearerToken = bearerToken;
-                    setIsLoggedIn(true);
                     setIsLoginError(false);
                     setErrorMessage('');
                     setProfileData(resp.data.user);
+                    setTimeout(() => {
+                        setIsLoggedIn(true);
+                        navigate('/profile');
+                    }, 1500)
                 }
             })
             .catch(err => alert(`Error logging in: ${err}`));
-        setTimeout(() => {
-            navigate('/profile');
-        }, 500)
+
         e.target.reset();
     }
 
